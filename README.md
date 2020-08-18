@@ -556,50 +556,39 @@ is enabled, these dependencies will be installed automatically. Therefore,
 you will need internet access for build.
 
 "This library requires Visual Studio 2017 for compilation."
-1. Open the solution (Client.sln) file.
+1. Open the solution (StarlingBankClient.sln) file.
 2. Invoke the build process using `Ctrl+Shift+B` shortcut key or using the `Build` menu as shown below.
 
-![Building SDK using Visual Studio](https://apidocs.io/illustration/cs?step=buildSDK&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
 
 ## How to Use
 
 The build process generates a portable class library, which can be used like a normal class library. The generated library is compatible with Windows Forms, Windows RT, Windows Phone 8,
 Silverlight 5, Xamarin iOS, Xamarin Android and Mono. More information on how to use can be found at the [MSDN Portable Class Libraries documentation](http://msdn.microsoft.com/en-us/library/vstudio/gg597391%28v=vs.100%29.aspx).
 
-The following section explains how to use the Client library in a new console project.
+The following section explains how to use the StarlingBankClient library in a new console project.
 
 ### 1. Starting a new project
 
 For starting a new project, right click on the current solution from the *solution explorer* and choose  ``` Add -> New Project ```.
 
-![Add a new project in the existing solution using Visual Studio](https://apidocs.io/illustration/cs?step=addProject&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
-
 Next, choose "Console Application", provide a ``` TestConsoleProject ``` as the project name and click ``` OK ```.
-
-![Create a new console project using Visual Studio](https://apidocs.io/illustration/cs?step=createProject&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
 
 ### 2. Set as startup project
 
 The new console project is the entry point for the eventual execution. This requires us to set the ``` TestConsoleProject ``` as the start-up project. To do this, right-click on the  ``` TestConsoleProject ``` and choose  ``` Set as StartUp Project ``` form the context menu.
 
-![Set the new cosole project as the start up project](https://apidocs.io/illustration/cs?step=setStartup&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
 
 ### 3. Add reference of the library project
 
-In order to use the Client library in the new project, first we must add a projet reference to the ``` TestConsoleProject ```. First, right click on the ``` References ``` node in the *solution explorer* and click ``` Add Reference... ```.
+In order to use the StarlingBankClient library in the new project, first we must add a projet reference to the ``` TestConsoleProject ```. First, right click on the ``` References ``` node in the *solution explorer* and click ``` Add Reference... ```.
 
-![Open references of the TestConsoleProject](https://apidocs.io/illustration/cs?step=addReference&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
-
-Next, a window will be displayed where we must set the ``` checkbox ``` on ``` Client.Tests ``` and click ``` OK ```. By doing this, we have added a reference of the ```Client.Tests``` project into the new ``` TestConsoleProject ```.
-
-![Add a reference to the TestConsoleProject](https://apidocs.io/illustration/cs?step=createReference&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
+Next, a window will be displayed where we must set the ``` checkbox ``` on ``` StarlingBankClient.Tests ``` and click ``` OK ```. By doing this, we have added a reference of the ```StarlingBankClient.Tests``` project into the new ``` TestConsoleProject ```.
 
 ### 4. Write sample code
 
 Once the ``` TestConsoleProject ``` is created, a file named ``` Program.cs ``` will be visible in the *solution explorer* with an empty ``` Main ``` method. This is the entry point for the execution of the entire solution.
 Here, you can add code to initialize the client library and acquire the instance of a *Controller* class. Sample code to initialize the client library and using controller methods is given in the subsequent sections.
 
-![Add a reference to the TestConsoleProject](https://apidocs.io/illustration/cs?step=addCode&workspaceFolder=Client-CSharp&workspaceName=Client&projectName=Client.Tests)
 
 ## How to Test
 
@@ -625,7 +614,7 @@ API client can be initialized as following.
 // Configuration parameters and credentials
 string oAuthAccessToken = "oAuthAccessToken"; // OAuth 2.0 Access Token
 
-ClientClient client = new ClientClient(oAuthAccessToken);
+StarlingBankClient client = new StarlingBankClient(StarlingBankClient.Configuration.Environments.SANDBOX, oAuthAccessToken);
 ```
 
 
@@ -658,7 +647,7 @@ ClientClient client = new ClientClient(oAuthAccessToken);
 * [SettleUpController](#settle_up_controller)
 * [SubscriptionsController](#subscriptions_controller)
 
-## <a name="webhooks_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.WebhooksController") WebhooksController
+## <a name="webhooks_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.WebhooksController") WebhooksController
 
 ### Get singleton instance
 
@@ -668,7 +657,7 @@ The singleton instance of the ``` WebhooksController ``` class can be accessed f
 IWebhooksController webhooks = client.Webhooks;
 ```
 
-### <a name="create_dispatch_webhook"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.WebhooksController.CreateDispatchWebhook") CreateDispatchWebhook
+### <a name="create_dispatch_webhook"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.WebhooksController.CreateDispatchWebhook") CreateDispatchWebhook
 
 > TODO: Add a method description
 
@@ -696,7 +685,7 @@ await webhooks.CreateDispatchWebhook(body);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="accounts_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.AccountsController") AccountsController
+## <a name="accounts_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.AccountsController") AccountsController
 
 ### Get singleton instance
 
@@ -706,7 +695,7 @@ The singleton instance of the ``` AccountsController ``` class can be accessed f
 IAccountsController accounts = client.Accounts;
 ```
 
-### <a name="get_accounts"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetAccounts") GetAccounts
+### <a name="get_accounts"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetAccounts") GetAccounts
 
 > This endpoint lists an account holder's bank accounts.
 > An account holder, such as a PCA (a *personal current account* - which should really be thought of as a *personal current account holder*), may have many accounts, such as a personal GBP and personal EUR account.
@@ -737,7 +726,7 @@ Standard.Models.Accounts result = await accounts.GetAccounts();
 | 500 | Server error |
 
 
-### <a name="get_available_periods"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetAvailablePeriods") GetAvailablePeriods
+### <a name="get_available_periods"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetAvailablePeriods") GetAvailablePeriods
 
 > Get list of statement periods which are available for an account
 
@@ -770,7 +759,7 @@ Standard.Models.AccountStatementPeriods result = await accounts.GetAvailablePeri
 | 500 | Server error |
 
 
-### <a name="get_account_identifiers"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetAccountIdentifiers") GetAccountIdentifiers
+### <a name="get_account_identifiers"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetAccountIdentifiers") GetAccountIdentifiers
 
 > Identifiers come in pairs:
 > 
@@ -811,7 +800,7 @@ Standard.Models.AccountIdentifiers result = await accounts.GetAccountIdentifiers
 | 500 | Server error |
 
 
-### <a name="get_account_balance"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetAccountBalance") GetAccountBalance
+### <a name="get_account_balance"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetAccountBalance") GetAccountBalance
 
 > The balance of the account holder's account is expressed in two ways: cleared balance and effective balance.
 > * The **cleared balance** is the balance of settled transactions and so does not include pending transactions. The cleared end of day balance is used to calculate interest.
@@ -850,7 +839,7 @@ Standard.Models.BalanceV2 result = await accounts.GetAccountBalance(accountUid);
 | 500 | Server error |
 
 
-### <a name="get_confirmation_of_funds"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetConfirmationOfFunds") GetConfirmationOfFunds
+### <a name="get_confirmation_of_funds"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetConfirmationOfFunds") GetConfirmationOfFunds
 
 > Get whether there are available funds for a requested amount
 
@@ -885,7 +874,7 @@ Standard.Models.ConfirmationOfFundsResponse result = await accounts.GetConfirmat
 | 500 | Server error |
 
 
-### <a name="get_download_csv_statement"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetDownloadCSVStatement") GetDownloadCSVStatement
+### <a name="get_download_csv_statement"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetDownloadCSVStatement") GetDownloadCSVStatement
 
 > To choose a file format, set the Accept header to either 'application/pdf' or 'text/csv'
 
@@ -920,7 +909,7 @@ Stream result = await accounts.GetDownloadCSVStatement(accountUid, yearMonth);
 | 500 | Server error |
 
 
-### <a name="get_download_csv_statement_for_date_range"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountsController.GetDownloadCSVStatementForDateRange") GetDownloadCSVStatementForDateRange
+### <a name="get_download_csv_statement_for_date_range"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountsController.GetDownloadCSVStatementForDateRange") GetDownloadCSVStatementForDateRange
 
 > To choose a file format, set the Accept header to either 'application/pdf' or 'text/csv'
 
@@ -959,7 +948,7 @@ Stream result = await accounts.GetDownloadCSVStatementForDateRange(accountUid, s
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="businesses_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.BusinessesController") BusinessesController
+## <a name="businesses_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.BusinessesController") BusinessesController
 
 ### Get singleton instance
 
@@ -969,7 +958,7 @@ The singleton instance of the ``` BusinessesController ``` class can be accessed
 IBusinessesController businesses = client.Businesses;
 ```
 
-### <a name="get_business"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.BusinessesController.GetBusiness") GetBusiness
+### <a name="get_business"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.BusinessesController.GetBusiness") GetBusiness
 
 > Get a business account holder's details
 
@@ -994,7 +983,7 @@ Standard.Models.Business result = await businesses.GetBusiness();
 | 500 | Server error |
 
 
-### <a name="get_registered_address"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.BusinessesController.GetRegisteredAddress") GetRegisteredAddress
+### <a name="get_registered_address"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.BusinessesController.GetRegisteredAddress") GetRegisteredAddress
 
 > Get a company's registered address
 
@@ -1019,20 +1008,20 @@ Standard.Models.AddressV2 result = await businesses.GetRegisteredAddress();
 | 500 | Server error |
 
 
-### <a name="get_correspondence_address"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.BusinessesController.GetCorrespondenceAddress") GetCorrespondenceAddress
+### <a name="get_correspondence_address"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.BusinessesController.GetCorrespondenceAddress") GetCorrespondenceAddress
 
 > Will fallback to registered address if not available
 
 
 ```csharp
-Task<Standard.Models.AddressV2> GetCorrespondenceAddress()
+Task<StarlingBankClient.Models.AddressV2> GetCorrespondenceAddress()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.AddressV2 result = await businesses.GetCorrespondenceAddress();
+StarlingBankClient.Models.AddressV2 result = await businesses.GetCorrespondenceAddress();
 
 ```
 
@@ -1046,7 +1035,7 @@ Standard.Models.AddressV2 result = await businesses.GetCorrespondenceAddress();
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="individuals_and_sole_traders_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.IndividualsAndSoleTradersController") IndividualsAndSoleTradersController
+## <a name="individuals_and_sole_traders_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.IndividualsAndSoleTradersController") IndividualsAndSoleTradersController
 
 ### Get singleton instance
 
@@ -1056,20 +1045,20 @@ The singleton instance of the ``` IndividualsAndSoleTradersController ``` class 
 IIndividualsAndSoleTradersController individualsAndSoleTraders = client.IndividualsAndSoleTraders;
 ```
 
-### <a name="get_individual"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.IndividualsAndSoleTradersController.GetIndividual") GetIndividual
+### <a name="get_individual"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.IndividualsAndSoleTradersController.GetIndividual") GetIndividual
 
 > Get an individual account holder's details
 
 
 ```csharp
-Task<Standard.Models.Individual> GetIndividual()
+Task<StarlingBankClient.Models.Individual> GetIndividual()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.Individual result = await individualsAndSoleTraders.GetIndividual();
+StarlingBankClient.Models.Individual result = await individualsAndSoleTraders.GetIndividual();
 
 ```
 
@@ -1081,13 +1070,13 @@ Standard.Models.Individual result = await individualsAndSoleTraders.GetIndividua
 | 500 | Server error |
 
 
-### <a name="update_email"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.IndividualsAndSoleTradersController.UpdateEmail") UpdateEmail
+### <a name="update_email"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.IndividualsAndSoleTradersController.UpdateEmail") UpdateEmail
 
 > Update an individual account holder's email address
 
 
 ```csharp
-Task UpdateEmail(Standard.Models.UpdateEmailRequest body)
+Task UpdateEmail(StarlingBankClient.Models.UpdateEmailRequest body)
 ```
 
 #### Parameters
@@ -1100,7 +1089,7 @@ Task UpdateEmail(Standard.Models.UpdateEmailRequest body)
 #### Example Usage
 
 ```csharp
-var body = new Standard.Models.UpdateEmailRequest();
+var body = new StarlingBankClient.Models.UpdateEmailRequest();
 
 await individualsAndSoleTraders.UpdateEmail(body);
 
@@ -1116,7 +1105,7 @@ await individualsAndSoleTraders.UpdateEmail(body);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="joint_accounts_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.JointAccountsController") JointAccountsController
+## <a name="joint_accounts_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.JointAccountsController") JointAccountsController
 
 ### Get singleton instance
 
@@ -1126,20 +1115,20 @@ The singleton instance of the ``` JointAccountsController ``` class can be acces
 IJointAccountsController jointAccounts = client.JointAccounts;
 ```
 
-### <a name="get_joint_account"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.JointAccountsController.GetJointAccount") GetJointAccount
+### <a name="get_joint_account"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.JointAccountsController.GetJointAccount") GetJointAccount
 
 > Get a joint account holder's details
 
 
 ```csharp
-Task<Standard.Models.JointAccount> GetJointAccount()
+Task<StarlingBankClient.Models.JointAccount> GetJointAccount()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.JointAccount result = await jointAccounts.GetJointAccount();
+StarlingBankClient.Models.JointAccount result = await jointAccounts.GetJointAccount();
 
 ```
 
@@ -1153,7 +1142,7 @@ Standard.Models.JointAccount result = await jointAccounts.GetJointAccount();
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="sole_traders_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.SoleTradersController") SoleTradersController
+## <a name="sole_traders_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.SoleTradersController") SoleTradersController
 
 ### Get singleton instance
 
@@ -1163,20 +1152,20 @@ The singleton instance of the ``` SoleTradersController ``` class can be accesse
 ISoleTradersController soleTraders = client.SoleTraders;
 ```
 
-### <a name="get_sole_trader"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SoleTradersController.GetSoleTrader") GetSoleTrader
+### <a name="get_sole_trader"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SoleTradersController.GetSoleTrader") GetSoleTrader
 
 > Get sole trader business details
 
 
 ```csharp
-Task<Standard.Models.SoleTrader> GetSoleTrader()
+Task<StarlingBankClient.Models.SoleTrader> GetSoleTrader()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.SoleTrader result = await soleTraders.GetSoleTrader();
+StarlingBankClient.Models.SoleTrader result = await soleTraders.GetSoleTrader();
 
 ```
 
@@ -1190,7 +1179,7 @@ Standard.Models.SoleTrader result = await soleTraders.GetSoleTrader();
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="spending_insights_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.SpendingInsightsController") SpendingInsightsController
+## <a name="spending_insights_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.SpendingInsightsController") SpendingInsightsController
 
 ### Get singleton instance
 
@@ -1200,13 +1189,13 @@ The singleton instance of the ``` SpendingInsightsController ``` class can be ac
 ISpendingInsightsController spendingInsights = client.SpendingInsights;
 ```
 
-### <a name="get_query_spending_insights_by_counterparty"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SpendingInsightsController.GetQuerySpendingInsightsByCounterparty") GetQuerySpendingInsightsByCounterparty
+### <a name="get_query_spending_insights_by_counterparty"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SpendingInsightsController.GetQuerySpendingInsightsByCounterparty") GetQuerySpendingInsightsByCounterparty
 
 > Get the spending insights grouped by counter party
 
 
 ```csharp
-Task<Standard.Models.SpendingCounterPartySummary> GetQuerySpendingInsightsByCounterparty(Guid accountUid, string year, Standard.Models.MonthEnum month)
+Task<StarlingBankClient.Models.SpendingCounterPartySummary> GetQuerySpendingInsightsByCounterparty(Guid accountUid, string year, StarlingBankClient.Models.MonthEnum month)
 ```
 
 #### Parameters
@@ -1223,9 +1212,9 @@ Task<Standard.Models.SpendingCounterPartySummary> GetQuerySpendingInsightsByCoun
 ```csharp
 Guid accountUid = Guid.NewGuid();
 string year = "year";
-var month = Standard.Models.MonthEnumHelper.ParseString("JANUARY");
+var month = StarlingBankClient.Models.MonthEnumHelper.ParseString("JANUARY");
 
-Standard.Models.SpendingCounterPartySummary result = await spendingInsights.GetQuerySpendingInsightsByCounterparty(accountUid, year, month);
+StarlingBankClient.Models.SpendingCounterPartySummary result = await spendingInsights.GetQuerySpendingInsightsByCounterparty(accountUid, year, month);
 
 ```
 
@@ -1237,13 +1226,13 @@ Standard.Models.SpendingCounterPartySummary result = await spendingInsights.GetQ
 | 500 | Server error |
 
 
-### <a name="get_query_spending_insights_by_spending_category"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SpendingInsightsController.GetQuerySpendingInsightsBySpendingCategory") GetQuerySpendingInsightsBySpendingCategory
+### <a name="get_query_spending_insights_by_spending_category"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SpendingInsightsController.GetQuerySpendingInsightsBySpendingCategory") GetQuerySpendingInsightsBySpendingCategory
 
 > Get the spending insights grouped by spending category
 
 
 ```csharp
-Task<Standard.Models.SpendingCategorySummary> GetQuerySpendingInsightsBySpendingCategory(Guid accountUid, string year, Standard.Models.MonthEnum month)
+Task<StarlingBankClient.Models.SpendingCategorySummary> GetQuerySpendingInsightsBySpendingCategory(Guid accountUid, string year, StarlingBankClient.Models.MonthEnum month)
 ```
 
 #### Parameters
@@ -1260,9 +1249,9 @@ Task<Standard.Models.SpendingCategorySummary> GetQuerySpendingInsightsBySpending
 ```csharp
 Guid accountUid = Guid.NewGuid();
 string year = "year";
-var month = Standard.Models.MonthEnumHelper.ParseString("JANUARY");
+var month = StarlingBankClient.Models.MonthEnumHelper.ParseString("JANUARY");
 
-Standard.Models.SpendingCategorySummary result = await spendingInsights.GetQuerySpendingInsightsBySpendingCategory(accountUid, year, month);
+StarlingBankClient.Models.SpendingCategorySummary result = await spendingInsights.GetQuerySpendingInsightsBySpendingCategory(accountUid, year, month);
 
 ```
 
@@ -1274,13 +1263,13 @@ Standard.Models.SpendingCategorySummary result = await spendingInsights.GetQuery
 | 500 | Server error |
 
 
-### <a name="get_query_spending_insights_by_country"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SpendingInsightsController.GetQuerySpendingInsightsByCountry") GetQuerySpendingInsightsByCountry
+### <a name="get_query_spending_insights_by_country"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SpendingInsightsController.GetQuerySpendingInsightsByCountry") GetQuerySpendingInsightsByCountry
 
 > Get the spending insights grouped by country
 
 
 ```csharp
-Task<Standard.Models.SpendingCountrySummary> GetQuerySpendingInsightsByCountry(Guid accountUid, string year, Standard.Models.MonthEnum month)
+Task<StarlingBankClient.Models.SpendingCountrySummary> GetQuerySpendingInsightsByCountry(Guid accountUid, string year, StarlingBankClient.Models.MonthEnum month)
 ```
 
 #### Parameters
@@ -1297,9 +1286,9 @@ Task<Standard.Models.SpendingCountrySummary> GetQuerySpendingInsightsByCountry(G
 ```csharp
 Guid accountUid = Guid.NewGuid();
 string year = "year";
-var month = Standard.Models.MonthEnumHelper.ParseString("JANUARY");
+var month = StarlingBankClient.Models.MonthEnumHelper.ParseString("JANUARY");
 
-Standard.Models.SpendingCountrySummary result = await spendingInsights.GetQuerySpendingInsightsByCountry(accountUid, year, month);
+StarlingBankClient.Models.SpendingCountrySummary result = await spendingInsights.GetQuerySpendingInsightsByCountry(accountUid, year, month);
 
 ```
 
@@ -1313,7 +1302,7 @@ Standard.Models.SpendingCountrySummary result = await spendingInsights.GetQueryS
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="account_holders_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.AccountHoldersController") AccountHoldersController
+## <a name="account_holders_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.AccountHoldersController") AccountHoldersController
 
 ### Get singleton instance
 
@@ -1323,20 +1312,20 @@ The singleton instance of the ``` AccountHoldersController ``` class can be acce
 IAccountHoldersController accountHolders = client.AccountHolders;
 ```
 
-### <a name="get_account_holder"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountHoldersController.GetAccountHolder") GetAccountHolder
+### <a name="get_account_holder"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountHoldersController.GetAccountHolder") GetAccountHolder
 
 > Get basic information about the account holder
 
 
 ```csharp
-Task<Standard.Models.AccountHolder> GetAccountHolder()
+Task<StarlingBankClient.Models.AccountHolder> GetAccountHolder()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.AccountHolder result = await accountHolders.GetAccountHolder();
+StarlingBankClient.Models.AccountHolder result = await accountHolders.GetAccountHolder();
 
 ```
 
@@ -1348,20 +1337,20 @@ Standard.Models.AccountHolder result = await accountHolders.GetAccountHolder();
 | 500 | Server error |
 
 
-### <a name="get_account_holder_name"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AccountHoldersController.GetAccountHolderName") GetAccountHolderName
+### <a name="get_account_holder_name"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AccountHoldersController.GetAccountHolderName") GetAccountHolderName
 
 > Get the name of the account holder
 
 
 ```csharp
-Task<Standard.Models.AccountHolderName> GetAccountHolderName()
+Task<StarlingBankClient.Models.AccountHolderName> GetAccountHolderName()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.AccountHolderName result = await accountHolders.GetAccountHolderName();
+StarlingBankClient.Models.AccountHolderName result = await accountHolders.GetAccountHolderName();
 
 ```
 
@@ -1375,7 +1364,7 @@ Standard.Models.AccountHolderName result = await accountHolders.GetAccountHolder
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="profile_images_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.ProfileImagesController") ProfileImagesController
+## <a name="profile_images_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.ProfileImagesController") ProfileImagesController
 
 ### Get singleton instance
 
@@ -1385,7 +1374,7 @@ The singleton instance of the ``` ProfileImagesController ``` class can be acces
 IProfileImagesController profileImages = client.ProfileImages;
 ```
 
-### <a name="get_download_profile_image"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.ProfileImagesController.GetDownloadProfileImage") GetDownloadProfileImage
+### <a name="get_download_profile_image"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.ProfileImagesController.GetDownloadProfileImage") GetDownloadProfileImage
 
 > Get a profile image if one exists
 
@@ -1418,7 +1407,7 @@ dynamic result = await profileImages.GetDownloadProfileImage(accountHolderUid);
 | 500 | Server error |
 
 
-### <a name="update_profile_image"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.ProfileImagesController.UpdateProfileImage") UpdateProfileImage
+### <a name="update_profile_image"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.ProfileImagesController.UpdateProfileImage") UpdateProfileImage
 
 > Update a profile image if one already exists
 
@@ -1455,7 +1444,7 @@ await profileImages.UpdateProfileImage(accountHolderUid, contentType, body);
 | 500 | Server error |
 
 
-### <a name="delete_profile_image"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.ProfileImagesController.DeleteProfileImage") DeleteProfileImage
+### <a name="delete_profile_image"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.ProfileImagesController.DeleteProfileImage") DeleteProfileImage
 
 > Delete a profile image if one exists
 
@@ -1490,7 +1479,7 @@ await profileImages.DeleteProfileImage(accountHolderUid);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="addresses_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.AddressesController") AddressesController
+## <a name="addresses_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.AddressesController") AddressesController
 
 ### Get singleton instance
 
@@ -1500,20 +1489,20 @@ The singleton instance of the ``` AddressesController ``` class can be accessed 
 IAddressesController addresses = client.Addresses;
 ```
 
-### <a name="get_addresses"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AddressesController.GetAddresses") GetAddresses
+### <a name="get_addresses"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AddressesController.GetAddresses") GetAddresses
 
 > Get the account holder's addresses
 
 
 ```csharp
-Task<Standard.Models.AddressesV2> GetAddresses()
+Task<StarlingBankClient.Models.AddressesV2> GetAddresses()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.AddressesV2 result = await addresses.GetAddresses();
+StarlingBankClient.Models.AddressesV2 result = await addresses.GetAddresses();
 
 ```
 
@@ -1525,13 +1514,13 @@ Standard.Models.AddressesV2 result = await addresses.GetAddresses();
 | 500 | Server error |
 
 
-### <a name="update_current_address"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.AddressesController.UpdateCurrentAddress") UpdateCurrentAddress
+### <a name="update_current_address"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.AddressesController.UpdateCurrentAddress") UpdateCurrentAddress
 
 > Update the account holder's current address
 
 
 ```csharp
-Task UpdateCurrentAddress(Standard.Models.AddressUpdateRequest body)
+Task UpdateCurrentAddress(StarlingBankClient.Models.AddressUpdateRequest body)
 ```
 
 #### Parameters
@@ -1544,7 +1533,7 @@ Task UpdateCurrentAddress(Standard.Models.AddressUpdateRequest body)
 #### Example Usage
 
 ```csharp
-var body = new Standard.Models.AddressUpdateRequest();
+var body = new StarlingBankClient.Models.AddressUpdateRequest();
 
 await addresses.UpdateCurrentAddress(body);
 
@@ -1560,7 +1549,7 @@ await addresses.UpdateCurrentAddress(body);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="cards_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.CardsController") CardsController
+## <a name="cards_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.CardsController") CardsController
 
 ### Get singleton instance
 
@@ -1570,13 +1559,13 @@ The singleton instance of the ``` CardsController ``` class can be accessed from
 ICardsController cards = client.Cards;
 ```
 
-### <a name="update_enable_gambling_payments"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableGamblingPayments") UpdateEnableGamblingPayments
+### <a name="update_enable_gambling_payments"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableGamblingPayments") UpdateEnableGamblingPayments
 
 > Update gambling payments control
 
 
 ```csharp
-Task UpdateEnableGamblingPayments(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnableGamblingPayments(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1591,7 +1580,7 @@ Task UpdateEnableGamblingPayments(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnableGamblingPayments(cardUid, body);
 
@@ -1605,13 +1594,13 @@ await cards.UpdateEnableGamblingPayments(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_pos"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnablePos") UpdateEnablePos
+### <a name="update_enable_pos"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnablePos") UpdateEnablePos
 
 > Update card present payments (contactless and chip and pin) control
 
 
 ```csharp
-Task UpdateEnablePos(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnablePos(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1626,7 +1615,7 @@ Task UpdateEnablePos(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnablePos(cardUid, body);
 
@@ -1640,13 +1629,13 @@ await cards.UpdateEnablePos(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_mag_stripe_payment"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableMagStripePayment") UpdateEnableMagStripePayment
+### <a name="update_enable_mag_stripe_payment"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableMagStripePayment") UpdateEnableMagStripePayment
 
 > Update magstripe payments control
 
 
 ```csharp
-Task UpdateEnableMagStripePayment(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnableMagStripePayment(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1661,7 +1650,7 @@ Task UpdateEnableMagStripePayment(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnableMagStripePayment(cardUid, body);
 
@@ -1675,13 +1664,13 @@ await cards.UpdateEnableMagStripePayment(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_currency_switch"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableCurrencySwitch") UpdateEnableCurrencySwitch
+### <a name="update_enable_currency_switch"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableCurrencySwitch") UpdateEnableCurrencySwitch
 
 > Update currency switch payments control
 
 
 ```csharp
-Task UpdateEnableCurrencySwitch(Guid cardUid, Standard.Models.CurrencyFlag body)
+Task UpdateEnableCurrencySwitch(Guid cardUid, StarlingBankClient.Models.CurrencyFlag body)
 ```
 
 #### Parameters
@@ -1696,7 +1685,7 @@ Task UpdateEnableCurrencySwitch(Guid cardUid, Standard.Models.CurrencyFlag body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.CurrencyFlag();
+var body = new StarlingBankClient.Models.CurrencyFlag();
 
 await cards.UpdateEnableCurrencySwitch(cardUid, body);
 
@@ -1710,13 +1699,13 @@ await cards.UpdateEnableCurrencySwitch(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_card"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableCard") UpdateEnableCard
+### <a name="update_enable_card"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableCard") UpdateEnableCard
 
 > Update card lock
 
 
 ```csharp
-Task UpdateEnableCard(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnableCard(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1731,7 +1720,7 @@ Task UpdateEnableCard(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnableCard(cardUid, body);
 
@@ -1745,13 +1734,13 @@ await cards.UpdateEnableCard(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_atm"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableAtm") UpdateEnableAtm
+### <a name="update_enable_atm"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableAtm") UpdateEnableAtm
 
 > Update ATM withdrawal control
 
 
 ```csharp
-Task UpdateEnableAtm(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnableAtm(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1766,7 +1755,7 @@ Task UpdateEnableAtm(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnableAtm(cardUid, body);
 
@@ -1780,13 +1769,13 @@ await cards.UpdateEnableAtm(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_online_payments"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableOnlinePayments") UpdateEnableOnlinePayments
+### <a name="update_enable_online_payments"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableOnlinePayments") UpdateEnableOnlinePayments
 
 > Update online payments control
 
 
 ```csharp
-Task UpdateEnableOnlinePayments(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnableOnlinePayments(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1801,7 +1790,7 @@ Task UpdateEnableOnlinePayments(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnableOnlinePayments(cardUid, body);
 
@@ -1815,13 +1804,13 @@ await cards.UpdateEnableOnlinePayments(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="update_enable_mobile_wallet"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.UpdateEnableMobileWallet") UpdateEnableMobileWallet
+### <a name="update_enable_mobile_wallet"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.UpdateEnableMobileWallet") UpdateEnableMobileWallet
 
 > Update mobile wallet payments control
 
 
 ```csharp
-Task UpdateEnableMobileWallet(Guid cardUid, Standard.Models.Enabling body)
+Task UpdateEnableMobileWallet(Guid cardUid, StarlingBankClient.Models.Enabling body)
 ```
 
 #### Parameters
@@ -1836,7 +1825,7 @@ Task UpdateEnableMobileWallet(Guid cardUid, Standard.Models.Enabling body)
 
 ```csharp
 Guid cardUid = Guid.NewGuid();
-var body = new Standard.Models.Enabling();
+var body = new StarlingBankClient.Models.Enabling();
 
 await cards.UpdateEnableMobileWallet(cardUid, body);
 
@@ -1850,20 +1839,20 @@ await cards.UpdateEnableMobileWallet(cardUid, body);
 | 500 | Server error |
 
 
-### <a name="list_cards"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.CardsController.ListCards") ListCards
+### <a name="list_cards"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.CardsController.ListCards") ListCards
 
 > Get all the cards for an account holder
 
 
 ```csharp
-Task<Standard.Models.Cards> ListCards()
+Task<StarlingBankClient.Models.Cards> ListCards()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.Cards result = await cards.ListCards();
+StarlingBankClient.Models.Cards result = await cards.ListCards();
 
 ```
 
@@ -1877,7 +1866,7 @@ Standard.Models.Cards result = await cards.ListCards();
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="recurring_card_payments_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.RecurringCardPaymentsController") RecurringCardPaymentsController
+## <a name="recurring_card_payments_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.RecurringCardPaymentsController") RecurringCardPaymentsController
 
 ### Get singleton instance
 
@@ -1887,13 +1876,13 @@ The singleton instance of the ``` RecurringCardPaymentsController ``` class can 
 IRecurringCardPaymentsController recurringCardPayments = client.RecurringCardPayments;
 ```
 
-### <a name="list_recurring_payments"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.RecurringCardPaymentsController.ListRecurringPayments") ListRecurringPayments
+### <a name="list_recurring_payments"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.RecurringCardPaymentsController.ListRecurringPayments") ListRecurringPayments
 
 > Fetch recurring card payments for an account holder
 
 
 ```csharp
-Task<Standard.Models.RecurringCardPayment> ListRecurringPayments(Guid accountUid)
+Task<StarlingBankClient.Models.RecurringCardPayment> ListRecurringPayments(Guid accountUid)
 ```
 
 #### Parameters
@@ -1908,14 +1897,14 @@ Task<Standard.Models.RecurringCardPayment> ListRecurringPayments(Guid accountUid
 ```csharp
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.RecurringCardPayment result = await recurringCardPayments.ListRecurringPayments(accountUid);
+StarlingBankClient.Models.RecurringCardPayment result = await recurringCardPayments.ListRecurringPayments(accountUid);
 
 ```
 
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="direct_debit_mandates_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.DirectDebitMandatesController") DirectDebitMandatesController
+## <a name="direct_debit_mandates_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.DirectDebitMandatesController") DirectDebitMandatesController
 
 ### Get singleton instance
 
@@ -1925,13 +1914,13 @@ The singleton instance of the ``` DirectDebitMandatesController ``` class can be
 IDirectDebitMandatesController directDebitMandates = client.DirectDebitMandates;
 ```
 
-### <a name="get_mandate"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.DirectDebitMandatesController.GetMandate") GetMandate
+### <a name="get_mandate"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.DirectDebitMandatesController.GetMandate") GetMandate
 
 > Get the direct debit mandate with the specified identifier
 
 
 ```csharp
-Task<Standard.Models.DirectDebitMandateV2> GetMandate(Guid mandateUid)
+Task<StarlingBankClient.Models.DirectDebitMandateV2> GetMandate(Guid mandateUid)
 ```
 
 #### Parameters
@@ -1946,7 +1935,7 @@ Task<Standard.Models.DirectDebitMandateV2> GetMandate(Guid mandateUid)
 ```csharp
 Guid mandateUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.DirectDebitMandateV2 result = await directDebitMandates.GetMandate(mandateUid);
+StarlingBankClient.Models.DirectDebitMandateV2 result = await directDebitMandates.GetMandate(mandateUid);
 
 ```
 
@@ -1958,7 +1947,7 @@ Standard.Models.DirectDebitMandateV2 result = await directDebitMandates.GetManda
 | 500 | Server error |
 
 
-### <a name="delete_cancel_mandate"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.DirectDebitMandatesController.DeleteCancelMandate") DeleteCancelMandate
+### <a name="delete_cancel_mandate"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.DirectDebitMandatesController.DeleteCancelMandate") DeleteCancelMandate
 
 > Cancel the direct debit mandate with the specified identifier
 
@@ -1991,13 +1980,13 @@ await directDebitMandates.DeleteCancelMandate(mandateUid);
 | 500 | Server error |
 
 
-### <a name="list_payments_for_mandate"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.DirectDebitMandatesController.ListPaymentsForMandate") ListPaymentsForMandate
+### <a name="list_payments_for_mandate"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.DirectDebitMandatesController.ListPaymentsForMandate") ListPaymentsForMandate
 
 > Get a transaction history for a direct debit
 
 
 ```csharp
-Task<Standard.Models.DirectDebitPaymentsResponse> ListPaymentsForMandate(Guid mandateUid, DateTime since)
+Task<StarlingBankClient.Models.DirectDebitPaymentsResponse> ListPaymentsForMandate(Guid mandateUid, DateTime since)
 ```
 
 #### Parameters
@@ -2014,7 +2003,7 @@ Task<Standard.Models.DirectDebitPaymentsResponse> ListPaymentsForMandate(Guid ma
 Guid mandateUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 DateTime since = 2020-08-17;
 
-Standard.Models.DirectDebitPaymentsResponse result = await directDebitMandates.ListPaymentsForMandate(mandateUid, since);
+StarlingBankClient.Models.DirectDebitPaymentsResponse result = await directDebitMandates.ListPaymentsForMandate(mandateUid, since);
 
 ```
 
@@ -2026,20 +2015,20 @@ Standard.Models.DirectDebitPaymentsResponse result = await directDebitMandates.L
 | 500 | Server error |
 
 
-### <a name="list_mandates"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.DirectDebitMandatesController.ListMandates") ListMandates
+### <a name="list_mandates"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.DirectDebitMandatesController.ListMandates") ListMandates
 
 > Get a list of direct debit mandates
 
 
 ```csharp
-Task<Standard.Models.DirectDebitMandatesV2> ListMandates()
+Task<StarlingBankClient.Models.DirectDebitMandatesV2> ListMandates()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.DirectDebitMandatesV2 result = await directDebitMandates.ListMandates();
+StarlingBankClient.Models.DirectDebitMandatesV2 result = await directDebitMandates.ListMandates();
 
 ```
 
@@ -2053,7 +2042,7 @@ Standard.Models.DirectDebitMandatesV2 result = await directDebitMandates.ListMan
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="transaction_feed_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.TransactionFeedController") TransactionFeedController
+## <a name="transaction_feed_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.TransactionFeedController") TransactionFeedController
 
 ### Get singleton instance
 
@@ -2063,7 +2052,7 @@ The singleton instance of the ``` TransactionFeedController ``` class can be acc
 ITransactionFeedController transactionFeed = client.TransactionFeed;
 ```
 
-### <a name="update_user_note"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.UpdateUserNote") UpdateUserNote
+### <a name="update_user_note"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.UpdateUserNote") UpdateUserNote
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2075,7 +2064,7 @@ Task UpdateUserNote(
         Guid accountUid,
         Guid categoryUid,
         Guid feedItemUid,
-        Standard.Models.UserNoteWrapper body)
+        StarlingBankClient.Models.UserNoteWrapper body)
 ```
 
 #### Parameters
@@ -2094,7 +2083,7 @@ Task UpdateUserNote(
 Guid accountUid = Guid.NewGuid();
 Guid categoryUid = Guid.NewGuid();
 Guid feedItemUid = Guid.NewGuid();
-var body = new Standard.Models.UserNoteWrapper();
+var body = new StarlingBankClient.Models.UserNoteWrapper();
 
 await transactionFeed.UpdateUserNote(accountUid, categoryUid, feedItemUid, body);
 
@@ -2108,7 +2097,7 @@ await transactionFeed.UpdateUserNote(accountUid, categoryUid, feedItemUid, body)
 | 500 | Server error |
 
 
-### <a name="get_download_feed_item_attachment"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetDownloadFeedItemAttachment") GetDownloadFeedItemAttachment
+### <a name="get_download_feed_item_attachment"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetDownloadFeedItemAttachment") GetDownloadFeedItemAttachment
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2153,7 +2142,7 @@ Stream result = await transactionFeed.GetDownloadFeedItemAttachment(accountUid, 
 | 500 | Server error |
 
 
-### <a name="get_receipt"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetReceipt") GetReceipt
+### <a name="get_receipt"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetReceipt") GetReceipt
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2161,7 +2150,7 @@ Stream result = await transactionFeed.GetDownloadFeedItemAttachment(accountUid, 
 
 
 ```csharp
-Task<Standard.Models.Receipt> GetReceipt(Guid accountUid, Guid categoryUid, Guid feedItemUid)
+Task<StarlingBankClient.Models.Receipt> GetReceipt(Guid accountUid, Guid categoryUid, Guid feedItemUid)
 ```
 
 #### Parameters
@@ -2180,7 +2169,7 @@ Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.Receipt result = await transactionFeed.GetReceipt(accountUid, categoryUid, feedItemUid);
+StarlingBankClient.Models.Receipt result = await transactionFeed.GetReceipt(accountUid, categoryUid, feedItemUid);
 
 ```
 
@@ -2192,17 +2181,17 @@ Standard.Models.Receipt result = await transactionFeed.GetReceipt(accountUid, ca
 | 500 | Server error |
 
 
-### <a name="create_or_update_receipt"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.CreateOrUpdateReceipt") CreateOrUpdateReceipt
+### <a name="create_or_update_receipt"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.CreateOrUpdateReceipt") CreateOrUpdateReceipt
 
 > Submit a receipt for a feed item
 
 
 ```csharp
-Task<Standard.Models.ReceiptCreationResponse> CreateOrUpdateReceipt(
+Task<StarlingBankClient.Models.ReceiptCreationResponse> CreateOrUpdateReceipt(
         Guid accountUid,
         Guid categoryUid,
         Guid feedItemUid,
-        Standard.Models.Receipt body)
+        StarlingBankClient.Models.Receipt body)
 ```
 
 #### Parameters
@@ -2221,9 +2210,9 @@ Task<Standard.Models.ReceiptCreationResponse> CreateOrUpdateReceipt(
 Guid accountUid = Guid.NewGuid();
 Guid categoryUid = Guid.NewGuid();
 Guid feedItemUid = Guid.NewGuid();
-var body = new Standard.Models.Receipt();
+var body = new StarlingBankClient.Models.Receipt();
 
-Standard.Models.ReceiptCreationResponse result = await transactionFeed.CreateOrUpdateReceipt(accountUid, categoryUid, feedItemUid, body);
+StarlingBankClient.Models.ReceiptCreationResponse result = await transactionFeed.CreateOrUpdateReceipt(accountUid, categoryUid, feedItemUid, body);
 
 ```
 
@@ -2235,7 +2224,7 @@ Standard.Models.ReceiptCreationResponse result = await transactionFeed.CreateOrU
 | 500 | Server error |
 
 
-### <a name="change_transaction_category"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.ChangeTransactionCategory") ChangeTransactionCategory
+### <a name="change_transaction_category"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.ChangeTransactionCategory") ChangeTransactionCategory
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2247,7 +2236,7 @@ Task ChangeTransactionCategory(
         Guid accountUid,
         Guid categoryUid,
         Guid feedItemUid,
-        Standard.Models.UpdateSpendingCategory body)
+        StarlingBankClient.Models.UpdateSpendingCategory body)
 ```
 
 #### Parameters
@@ -2266,7 +2255,7 @@ Task ChangeTransactionCategory(
 Guid accountUid = Guid.NewGuid();
 Guid categoryUid = Guid.NewGuid();
 Guid feedItemUid = Guid.NewGuid();
-var body = new Standard.Models.UpdateSpendingCategory();
+var body = new StarlingBankClient.Models.UpdateSpendingCategory();
 
 await transactionFeed.ChangeTransactionCategory(accountUid, categoryUid, feedItemUid, body);
 
@@ -2280,7 +2269,7 @@ await transactionFeed.ChangeTransactionCategory(accountUid, categoryUid, feedIte
 | 500 | Server error |
 
 
-### <a name="get_feed_item"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetFeedItem") GetFeedItem
+### <a name="get_feed_item"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetFeedItem") GetFeedItem
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2288,7 +2277,7 @@ await transactionFeed.ChangeTransactionCategory(accountUid, categoryUid, feedIte
 
 
 ```csharp
-Task<Standard.Models.FeedItem> GetFeedItem(Guid accountUid, Guid categoryUid, Guid feedItemUid)
+Task<StarlingBankClient.Models.FeedItem> GetFeedItem(Guid accountUid, Guid categoryUid, Guid feedItemUid)
 ```
 
 #### Parameters
@@ -2307,7 +2296,7 @@ Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.FeedItem result = await transactionFeed.GetFeedItem(accountUid, categoryUid, feedItemUid);
+StarlingBankClient.Models.FeedItem result = await transactionFeed.GetFeedItem(accountUid, categoryUid, feedItemUid);
 
 ```
 
@@ -2319,7 +2308,7 @@ Standard.Models.FeedItem result = await transactionFeed.GetFeedItem(accountUid, 
 | 500 | Server error |
 
 
-### <a name="get_query_feed_items"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetQueryFeedItems") GetQueryFeedItems
+### <a name="get_query_feed_items"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetQueryFeedItems") GetQueryFeedItems
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2327,7 +2316,7 @@ Standard.Models.FeedItem result = await transactionFeed.GetFeedItem(accountUid, 
 
 
 ```csharp
-Task<Standard.Models.FeedItems> GetQueryFeedItems(Guid accountUid, Guid categoryUid, DateTime changesSince)
+Task<StarlingBankClient.Models.FeedItems> GetQueryFeedItems(Guid accountUid, Guid categoryUid, DateTime changesSince)
 ```
 
 #### Parameters
@@ -2346,7 +2335,7 @@ Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 DateTime changesSince = 2020-01-01T12:34:56.000Z;
 
-Standard.Models.FeedItems result = await transactionFeed.GetQueryFeedItems(accountUid, categoryUid, changesSince);
+StarlingBankClient.Models.FeedItems result = await transactionFeed.GetQueryFeedItems(accountUid, categoryUid, changesSince);
 
 ```
 
@@ -2358,7 +2347,7 @@ Standard.Models.FeedItems result = await transactionFeed.GetQueryFeedItems(accou
 | 500 | Server error |
 
 
-### <a name="get_query_feed_items_with_transaction_times_between"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetQueryFeedItemsWithTransactionTimesBetween") GetQueryFeedItemsWithTransactionTimesBetween
+### <a name="get_query_feed_items_with_transaction_times_between"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetQueryFeedItemsWithTransactionTimesBetween") GetQueryFeedItemsWithTransactionTimesBetween
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2366,7 +2355,7 @@ Standard.Models.FeedItems result = await transactionFeed.GetQueryFeedItems(accou
 
 
 ```csharp
-Task<Standard.Models.FeedItems> GetQueryFeedItemsWithTransactionTimesBetween(
+Task<StarlingBankClient.Models.FeedItems> GetQueryFeedItemsWithTransactionTimesBetween(
         Guid accountUid,
         Guid categoryUid,
         DateTime minTransactionTimestamp,
@@ -2391,7 +2380,7 @@ Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 DateTime minTransactionTimestamp = 2020-06-01T12:34:56.000Z;
 DateTime maxTransactionTimestamp = 2020-07-01T12:34:56.000Z;
 
-Standard.Models.FeedItems result = await transactionFeed.GetQueryFeedItemsWithTransactionTimesBetween(accountUid, categoryUid, minTransactionTimestamp, maxTransactionTimestamp);
+StarlingBankClient.Models.FeedItems result = await transactionFeed.GetQueryFeedItemsWithTransactionTimesBetween(accountUid, categoryUid, minTransactionTimestamp, maxTransactionTimestamp);
 
 ```
 
@@ -2403,7 +2392,7 @@ Standard.Models.FeedItems result = await transactionFeed.GetQueryFeedItemsWithTr
 | 500 | Server error |
 
 
-### <a name="get_feed_item_attachments"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetFeedItemAttachments") GetFeedItemAttachments
+### <a name="get_feed_item_attachments"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetFeedItemAttachments") GetFeedItemAttachments
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2411,7 +2400,7 @@ Standard.Models.FeedItems result = await transactionFeed.GetQueryFeedItemsWithTr
 
 
 ```csharp
-Task<Standard.Models.FeedItemAttachments> GetFeedItemAttachments(Guid accountUid, Guid categoryUid, Guid feedItemUid)
+Task<StarlingBankClient.Models.FeedItemAttachments> GetFeedItemAttachments(Guid accountUid, Guid categoryUid, Guid feedItemUid)
 ```
 
 #### Parameters
@@ -2430,7 +2419,7 @@ Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.FeedItemAttachments result = await transactionFeed.GetFeedItemAttachments(accountUid, categoryUid, feedItemUid);
+StarlingBankClient.Models.FeedItemAttachments result = await transactionFeed.GetFeedItemAttachments(accountUid, categoryUid, feedItemUid);
 
 ```
 
@@ -2442,7 +2431,7 @@ Standard.Models.FeedItemAttachments result = await transactionFeed.GetFeedItemAt
 | 500 | Server error |
 
 
-### <a name="get_mastercard_feed_item"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.TransactionFeedController.GetMastercardFeedItem") GetMastercardFeedItem
+### <a name="get_mastercard_feed_item"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.TransactionFeedController.GetMastercardFeedItem") GetMastercardFeedItem
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2450,7 +2439,7 @@ Standard.Models.FeedItemAttachments result = await transactionFeed.GetFeedItemAt
 
 
 ```csharp
-Task<Standard.Models.MastercardFeedItem> GetMastercardFeedItem(Guid accountUid, Guid categoryUid, Guid feedItemUid)
+Task<StarlingBankClient.Models.MastercardFeedItem> GetMastercardFeedItem(Guid accountUid, Guid categoryUid, Guid feedItemUid)
 ```
 
 #### Parameters
@@ -2469,7 +2458,7 @@ Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.MastercardFeedItem result = await transactionFeed.GetMastercardFeedItem(accountUid, categoryUid, feedItemUid);
+StarlingBankClient.Models.MastercardFeedItem result = await transactionFeed.GetMastercardFeedItem(accountUid, categoryUid, feedItemUid);
 
 ```
 
@@ -2483,7 +2472,7 @@ Standard.Models.MastercardFeedItem result = await transactionFeed.GetMastercardF
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="feed_round_up_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.FeedRoundUpController") FeedRoundUpController
+## <a name="feed_round_up_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.FeedRoundUpController") FeedRoundUpController
 
 ### Get singleton instance
 
@@ -2493,13 +2482,13 @@ The singleton instance of the ``` FeedRoundUpController ``` class can be accesse
 IFeedRoundUpController feedRoundUp = client.FeedRoundUp;
 ```
 
-### <a name="fetch_round_up_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.FeedRoundUpController.FetchRoundUpGoal") FetchRoundUpGoal
+### <a name="fetch_round_up_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.FeedRoundUpController.FetchRoundUpGoal") FetchRoundUpGoal
 
 > Returns the the round-up goal associated with an account if one has been created
 
 
 ```csharp
-Task<Standard.Models.RoundUpGoalResponse> FetchRoundUpGoal(Guid accountUid)
+Task<StarlingBankClient.Models.RoundUpGoalResponse> FetchRoundUpGoal(Guid accountUid)
 ```
 
 #### Parameters
@@ -2514,7 +2503,7 @@ Task<Standard.Models.RoundUpGoalResponse> FetchRoundUpGoal(Guid accountUid)
 ```csharp
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.RoundUpGoalResponse result = await feedRoundUp.FetchRoundUpGoal(accountUid);
+StarlingBankClient.Models.RoundUpGoalResponse result = await feedRoundUp.FetchRoundUpGoal(accountUid);
 
 ```
 
@@ -2526,13 +2515,13 @@ Standard.Models.RoundUpGoalResponse result = await feedRoundUp.FetchRoundUpGoal(
 | 500 | Server error |
 
 
-### <a name="update_activate_round_up_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.FeedRoundUpController.UpdateActivateRoundUpGoal") UpdateActivateRoundUpGoal
+### <a name="update_activate_round_up_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.FeedRoundUpController.UpdateActivateRoundUpGoal") UpdateActivateRoundUpGoal
 
 > Activates transaction round-up and adds remainder to savings goal
 
 
 ```csharp
-Task UpdateActivateRoundUpGoal(Guid accountUid, Standard.Models.RoundUpGoalPayload body)
+Task UpdateActivateRoundUpGoal(Guid accountUid, StarlingBankClient.Models.RoundUpGoalPayload body)
 ```
 
 #### Parameters
@@ -2547,7 +2536,7 @@ Task UpdateActivateRoundUpGoal(Guid accountUid, Standard.Models.RoundUpGoalPaylo
 
 ```csharp
 Guid accountUid = Guid.NewGuid();
-var body = new Standard.Models.RoundUpGoalPayload();
+var body = new StarlingBankClient.Models.RoundUpGoalPayload();
 
 await feedRoundUp.UpdateActivateRoundUpGoal(accountUid, body);
 
@@ -2561,7 +2550,7 @@ await feedRoundUp.UpdateActivateRoundUpGoal(accountUid, body);
 | 500 | Server error |
 
 
-### <a name="delete_stop_round_up_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.FeedRoundUpController.DeleteStopRoundUpGoal") DeleteStopRoundUpGoal
+### <a name="delete_stop_round_up_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.FeedRoundUpController.DeleteStopRoundUpGoal") DeleteStopRoundUpGoal
 
 > Deletes the round-up goal associated with an account if one exists
 
@@ -2596,7 +2585,7 @@ await feedRoundUp.DeleteStopRoundUpGoal(accountUid);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="api_user_identities_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.APIUserIdentitiesController") APIUserIdentitiesController
+## <a name="api_user_identities_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.APIUserIdentitiesController") APIUserIdentitiesController
 
 ### Get singleton instance
 
@@ -2606,20 +2595,20 @@ The singleton instance of the ``` APIUserIdentitiesController ``` class can be a
 IAPIUserIdentitiesController aPIUserIdentities = client.APIUserIdentities;
 ```
 
-### <a name="get_token_identity"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.APIUserIdentitiesController.GetTokenIdentity") GetTokenIdentity
+### <a name="get_token_identity"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.APIUserIdentitiesController.GetTokenIdentity") GetTokenIdentity
 
 > This endpoint returns the permissions you have access to, the time until the token expires and the account holder's unique identifier.
 
 
 ```csharp
-Task<Standard.Models.IdentityV2> GetTokenIdentity()
+Task<StarlingBankClient.Models.IdentityV2> GetTokenIdentity()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.IdentityV2 result = await aPIUserIdentities.GetTokenIdentity();
+StarlingBankClient.Models.IdentityV2 result = await aPIUserIdentities.GetTokenIdentity();
 
 ```
 
@@ -2631,20 +2620,20 @@ Standard.Models.IdentityV2 result = await aPIUserIdentities.GetTokenIdentity();
 | 500 | Server error |
 
 
-### <a name="get_authorising_individual"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.APIUserIdentitiesController.GetAuthorisingIndividual") GetAuthorisingIndividual
+### <a name="get_authorising_individual"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.APIUserIdentitiesController.GetAuthorisingIndividual") GetAuthorisingIndividual
 
 > The individual who authorised the application
 
 
 ```csharp
-Task<Standard.Models.Individual> GetAuthorisingIndividual()
+Task<StarlingBankClient.Models.Individual> GetAuthorisingIndividual()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.Individual result = await aPIUserIdentities.GetAuthorisingIndividual();
+StarlingBankClient.Models.Individual result = await aPIUserIdentities.GetAuthorisingIndividual();
 
 ```
 
@@ -2656,7 +2645,7 @@ Standard.Models.Individual result = await aPIUserIdentities.GetAuthorisingIndivi
 | 500 | Server error |
 
 
-### <a name="update_logout_individual"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.APIUserIdentitiesController.UpdateLogoutIndividual") UpdateLogoutIndividual
+### <a name="update_logout_individual"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.APIUserIdentitiesController.UpdateLogoutIndividual") UpdateLogoutIndividual
 
 > This endpoint logs an individual out by disabling all of their active access tokens.
 
@@ -2683,7 +2672,7 @@ await aPIUserIdentities.UpdateLogoutIndividual();
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="kyc_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.KYCController") KYCController
+## <a name="kyc_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.KYCController") KYCController
 
 ### Get singleton instance
 
@@ -2693,20 +2682,20 @@ The singleton instance of the ``` KYCController ``` class can be accessed from t
 IKYCController kYC = client.KYC;
 ```
 
-### <a name="get_kyc_result"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.KYCController.GetKycResult") GetKycResult
+### <a name="get_kyc_result"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.KYCController.GetKycResult") GetKycResult
 
 > Get KYC result for an account holder
 
 
 ```csharp
-Task<Standard.Models.KycResult> GetKycResult()
+Task<StarlingBankClient.Models.KycResult> GetKycResult()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.KycResult result = await kYC.GetKycResult();
+StarlingBankClient.Models.KycResult result = await kYC.GetKycResult();
 
 ```
 
@@ -2720,7 +2709,7 @@ Standard.Models.KycResult result = await kYC.GetKycResult();
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="payments_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.PaymentsController") PaymentsController
+## <a name="payments_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.PaymentsController") PaymentsController
 
 ### Get singleton instance
 
@@ -2730,13 +2719,13 @@ The singleton instance of the ``` PaymentsController ``` class can be accessed f
 IPaymentsController payments = client.Payments;
 ```
 
-### <a name="get_payment_order"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.GetPaymentOrder") GetPaymentOrder
+### <a name="get_payment_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.GetPaymentOrder") GetPaymentOrder
 
 > Get a payment order
 
 
 ```csharp
-Task<Standard.Models.PaymentOrderV2> GetPaymentOrder(Guid paymentOrderUid)
+Task<StarlingBankClient.Models.PaymentOrderV2> GetPaymentOrder(Guid paymentOrderUid)
 ```
 
 #### Parameters
@@ -2751,7 +2740,7 @@ Task<Standard.Models.PaymentOrderV2> GetPaymentOrder(Guid paymentOrderUid)
 ```csharp
 Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.PaymentOrderV2 result = await payments.GetPaymentOrder(paymentOrderUid);
+StarlingBankClient.Models.PaymentOrderV2 result = await payments.GetPaymentOrder(paymentOrderUid);
 
 ```
 
@@ -2763,7 +2752,7 @@ Standard.Models.PaymentOrderV2 result = await payments.GetPaymentOrder(paymentOr
 | 500 | Server error |
 
 
-### <a name="update_make_local_payment"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.UpdateMakeLocalPayment") UpdateMakeLocalPayment
+### <a name="update_make_local_payment"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.UpdateMakeLocalPayment") UpdateMakeLocalPayment
 
 > Creates and sends an immediate payment within the UK under the Faster Payments Scheme or via SEPA for payments between Euro accounts. The recipient of the payment must be a payee of the account holder (new payees can be created using the 'Payees' endpoint) OR be defined in the `paymentRecipient` member of the request.
 > 
@@ -2773,7 +2762,7 @@ Standard.Models.PaymentOrderV2 result = await payments.GetPaymentOrder(paymentOr
 
 
 ```csharp
-Task<Standard.Models.InstructLocalPaymentResponse> UpdateMakeLocalPayment(Guid accountUid, Guid categoryUid, Standard.Models.InstructLocalPaymentRequest body)
+Task<StarlingBankClient.Models.InstructLocalPaymentResponse> UpdateMakeLocalPayment(Guid accountUid, Guid categoryUid, StarlingBankClient.Models.InstructLocalPaymentRequest body)
 ```
 
 #### Parameters
@@ -2790,9 +2779,9 @@ Task<Standard.Models.InstructLocalPaymentResponse> UpdateMakeLocalPayment(Guid a
 ```csharp
 Guid accountUid = Guid.NewGuid();
 Guid categoryUid = Guid.NewGuid();
-var body = new Standard.Models.InstructLocalPaymentRequest();
+var body = new StarlingBankClient.Models.InstructLocalPaymentRequest();
 
-Standard.Models.InstructLocalPaymentResponse result = await payments.UpdateMakeLocalPayment(accountUid, categoryUid, body);
+StarlingBankClient.Models.InstructLocalPaymentResponse result = await payments.UpdateMakeLocalPayment(accountUid, categoryUid, body);
 
 ```
 
@@ -2804,7 +2793,7 @@ Standard.Models.InstructLocalPaymentResponse result = await payments.UpdateMakeL
 | 500 | Server error |
 
 
-### <a name="list_standing_orders"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.ListStandingOrders") ListStandingOrders
+### <a name="list_standing_orders"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.ListStandingOrders") ListStandingOrders
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2812,7 +2801,7 @@ Standard.Models.InstructLocalPaymentResponse result = await payments.UpdateMakeL
 
 
 ```csharp
-Task<Standard.Models.StandingOrdersResponse> ListStandingOrders(Guid accountUid, Guid categoryUid)
+Task<StarlingBankClient.Models.StandingOrdersResponse> ListStandingOrders(Guid accountUid, Guid categoryUid)
 ```
 
 #### Parameters
@@ -2829,7 +2818,7 @@ Task<Standard.Models.StandingOrdersResponse> ListStandingOrders(Guid accountUid,
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.StandingOrdersResponse result = await payments.ListStandingOrders(accountUid, categoryUid);
+StarlingBankClient.Models.StandingOrdersResponse result = await payments.ListStandingOrders(accountUid, categoryUid);
 
 ```
 
@@ -2841,7 +2830,7 @@ Standard.Models.StandingOrdersResponse result = await payments.ListStandingOrder
 | 500 | Server error |
 
 
-### <a name="create_standing_order"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.CreateStandingOrder") CreateStandingOrder
+### <a name="create_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.CreateStandingOrder") CreateStandingOrder
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2849,7 +2838,7 @@ Standard.Models.StandingOrdersResponse result = await payments.ListStandingOrder
 
 
 ```csharp
-Task<Standard.Models.CreateStandingOrderResponse> CreateStandingOrder(Guid accountUid, Guid categoryUid, Standard.Models.CreateStandingOrderRequest body)
+Task<StarlingBankClient.Models.CreateStandingOrderResponse> CreateStandingOrder(Guid accountUid, Guid categoryUid, StarlingBankClient.Models.CreateStandingOrderRequest body)
 ```
 
 #### Parameters
@@ -2866,9 +2855,9 @@ Task<Standard.Models.CreateStandingOrderResponse> CreateStandingOrder(Guid accou
 ```csharp
 Guid accountUid = Guid.NewGuid();
 Guid categoryUid = Guid.NewGuid();
-var body = new Standard.Models.CreateStandingOrderRequest();
+var body = new StarlingBankClient.Models.CreateStandingOrderRequest();
 
-Standard.Models.CreateStandingOrderResponse result = await payments.CreateStandingOrder(accountUid, categoryUid, body);
+StarlingBankClient.Models.CreateStandingOrderResponse result = await payments.CreateStandingOrder(accountUid, categoryUid, body);
 
 ```
 
@@ -2880,7 +2869,7 @@ Standard.Models.CreateStandingOrderResponse result = await payments.CreateStandi
 | 500 | Server error |
 
 
-### <a name="get_standing_order"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.GetStandingOrder") GetStandingOrder
+### <a name="get_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.GetStandingOrder") GetStandingOrder
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2888,7 +2877,7 @@ Standard.Models.CreateStandingOrderResponse result = await payments.CreateStandi
 
 
 ```csharp
-Task<Standard.Models.StandingOrder> GetStandingOrder(Guid accountUid, Guid categoryUid, Guid paymentOrderUid)
+Task<StarlingBankClient.Models.StandingOrder> GetStandingOrder(Guid accountUid, Guid categoryUid, Guid paymentOrderUid)
 ```
 
 #### Parameters
@@ -2907,7 +2896,7 @@ Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.StandingOrder result = await payments.GetStandingOrder(accountUid, categoryUid, paymentOrderUid);
+StarlingBankClient.Models.StandingOrder result = await payments.GetStandingOrder(accountUid, categoryUid, paymentOrderUid);
 
 ```
 
@@ -2919,7 +2908,7 @@ Standard.Models.StandingOrder result = await payments.GetStandingOrder(accountUi
 | 500 | Server error |
 
 
-### <a name="update_standing_order"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.UpdateStandingOrder") UpdateStandingOrder
+### <a name="update_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.UpdateStandingOrder") UpdateStandingOrder
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -2927,11 +2916,11 @@ Standard.Models.StandingOrder result = await payments.GetStandingOrder(accountUi
 
 
 ```csharp
-Task<Standard.Models.UpdateStandingOrderResponse> UpdateStandingOrder(
+Task<StarlingBankClient.Models.UpdateStandingOrderResponse> UpdateStandingOrder(
         Guid accountUid,
         Guid categoryUid,
         Guid paymentOrderUid,
-        Standard.Models.UpdateStandingOrderRequest body)
+        StarlingBankClient.Models.UpdateStandingOrderRequest body)
 ```
 
 #### Parameters
@@ -2950,9 +2939,9 @@ Task<Standard.Models.UpdateStandingOrderResponse> UpdateStandingOrder(
 Guid accountUid = Guid.NewGuid();
 Guid categoryUid = Guid.NewGuid();
 Guid paymentOrderUid = Guid.NewGuid();
-var body = new Standard.Models.UpdateStandingOrderRequest();
+var body = new StarlingBankClient.Models.UpdateStandingOrderRequest();
 
-Standard.Models.UpdateStandingOrderResponse result = await payments.UpdateStandingOrder(accountUid, categoryUid, paymentOrderUid, body);
+StarlingBankClient.Models.UpdateStandingOrderResponse result = await payments.UpdateStandingOrder(accountUid, categoryUid, paymentOrderUid, body);
 
 ```
 
@@ -2964,7 +2953,7 @@ Standard.Models.UpdateStandingOrderResponse result = await payments.UpdateStandi
 | 500 | Server error |
 
 
-### <a name="delete_cancel_standing_order"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.DeleteCancelStandingOrder") DeleteCancelStandingOrder
+### <a name="delete_cancel_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.DeleteCancelStandingOrder") DeleteCancelStandingOrder
 
 > Categories are subdivisions within an account.
 > The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
@@ -3003,7 +2992,7 @@ await payments.DeleteCancelStandingOrder(accountUid, categoryUid, paymentOrderUi
 | 500 | Server error |
 
 
-### <a name="list_next_payment_dates"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.ListNextPaymentDates") ListNextPaymentDates
+### <a name="list_next_payment_dates"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.ListNextPaymentDates") ListNextPaymentDates
 
 > N.B. if you're looking for only the next payment date, this is also returned when getting a standing order in the `StandingOrder` response from the field `nextDate`.
 > 
@@ -3013,7 +3002,7 @@ await payments.DeleteCancelStandingOrder(accountUid, categoryUid, paymentOrderUi
 
 
 ```csharp
-Task<Standard.Models.NextPaymentDatesResponse> ListNextPaymentDates(
+Task<StarlingBankClient.Models.NextPaymentDatesResponse> ListNextPaymentDates(
         Guid accountUid,
         Guid categoryUid,
         Guid paymentOrderUid,
@@ -3038,7 +3027,7 @@ Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 int? count = 28;
 
-Standard.Models.NextPaymentDatesResponse result = await payments.ListNextPaymentDates(accountUid, categoryUid, paymentOrderUid, count);
+StarlingBankClient.Models.NextPaymentDatesResponse result = await payments.ListNextPaymentDates(accountUid, categoryUid, paymentOrderUid, count);
 
 ```
 
@@ -3050,13 +3039,13 @@ Standard.Models.NextPaymentDatesResponse result = await payments.ListNextPayment
 | 500 | Server error |
 
 
-### <a name="get_payment_order_payments"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PaymentsController.GetPaymentOrderPayments") GetPaymentOrderPayments
+### <a name="get_payment_order_payments"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PaymentsController.GetPaymentOrderPayments") GetPaymentOrderPayments
 
 > Get the payments associated with a payment order
 
 
 ```csharp
-Task<Standard.Models.PaymentOrderPaymentsResponse> GetPaymentOrderPayments(Guid paymentOrderUid)
+Task<StarlingBankClient.Models.PaymentOrderPaymentsResponse> GetPaymentOrderPayments(Guid paymentOrderUid)
 ```
 
 #### Parameters
@@ -3071,7 +3060,7 @@ Task<Standard.Models.PaymentOrderPaymentsResponse> GetPaymentOrderPayments(Guid 
 ```csharp
 Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.PaymentOrderPaymentsResponse result = await payments.GetPaymentOrderPayments(paymentOrderUid);
+StarlingBankClient.Models.PaymentOrderPaymentsResponse result = await payments.GetPaymentOrderPayments(paymentOrderUid);
 
 ```
 
@@ -3085,7 +3074,7 @@ Standard.Models.PaymentOrderPaymentsResponse result = await payments.GetPaymentO
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="onboarding_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.OnboardingController") OnboardingController
+## <a name="onboarding_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.OnboardingController") OnboardingController
 
 ### Get singleton instance
 
@@ -3095,20 +3084,20 @@ The singleton instance of the ``` OnboardingController ``` class can be accessed
 IOnboardingController onboarding = client.Onboarding;
 ```
 
-### <a name="get_onboarding_status"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.OnboardingController.GetOnboardingStatus") GetOnboardingStatus
+### <a name="get_onboarding_status"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.OnboardingController.GetOnboardingStatus") GetOnboardingStatus
 
 > Get the onboarding status of the account
 
 
 ```csharp
-Task<Standard.Models.OnboardingStatus> GetOnboardingStatus()
+Task<StarlingBankClient.Models.OnboardingStatus> GetOnboardingStatus()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.OnboardingStatus result = await onboarding.GetOnboardingStatus();
+StarlingBankClient.Models.OnboardingStatus result = await onboarding.GetOnboardingStatus();
 
 ```
 
@@ -3120,13 +3109,13 @@ Standard.Models.OnboardingStatus result = await onboarding.GetOnboardingStatus()
 | 500 | Server error |
 
 
-### <a name="update_onboard"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.OnboardingController.UpdateOnboard") UpdateOnboard
+### <a name="update_onboard"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.OnboardingController.UpdateOnboard") UpdateOnboard
 
 > Onboard an account
 
 
 ```csharp
-Task<Standard.Models.OnboardingResponse> UpdateOnboard(Standard.Models.OnboardingRequest body)
+Task<StarlingBankClient.Models.OnboardingResponse> UpdateOnboard(StarlingBankClient.Models.OnboardingRequest body)
 ```
 
 #### Parameters
@@ -3139,9 +3128,9 @@ Task<Standard.Models.OnboardingResponse> UpdateOnboard(Standard.Models.Onboardin
 #### Example Usage
 
 ```csharp
-var body = new Standard.Models.OnboardingRequest();
+var body = new StarlingBankClient.Models.OnboardingRequest();
 
-Standard.Models.OnboardingResponse result = await onboarding.UpdateOnboard(body);
+StarlingBankClient.Models.OnboardingResponse result = await onboarding.UpdateOnboard(body);
 
 ```
 
@@ -3155,7 +3144,7 @@ Standard.Models.OnboardingResponse result = await onboarding.UpdateOnboard(body)
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="payees_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.PayeesController") PayeesController
+## <a name="payees_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.PayeesController") PayeesController
 
 ### Get singleton instance
 
@@ -3165,20 +3154,20 @@ The singleton instance of the ``` PayeesController ``` class can be accessed fro
 IPayeesController payees = client.Payees;
 ```
 
-### <a name="get_payees"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.GetPayees") GetPayees
+### <a name="get_payees"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.GetPayees") GetPayees
 
 > Get an account holder's payees
 
 
 ```csharp
-Task<Standard.Models.Payees> GetPayees()
+Task<StarlingBankClient.Models.Payees> GetPayees()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.Payees result = await payees.GetPayees();
+StarlingBankClient.Models.Payees result = await payees.GetPayees();
 
 ```
 
@@ -3190,13 +3179,13 @@ Standard.Models.Payees result = await payees.GetPayees();
 | 500 | Server error |
 
 
-### <a name="create_payee"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.CreatePayee") CreatePayee
+### <a name="create_payee"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.CreatePayee") CreatePayee
 
 > Create a payee
 
 
 ```csharp
-Task<Standard.Models.PayeeCreationResponse> CreatePayee(Standard.Models.PayeeCreationRequest body)
+Task<StarlingBankClient.Models.PayeeCreationResponse> CreatePayee(StarlingBankClient.Models.PayeeCreationRequest body)
 ```
 
 #### Parameters
@@ -3209,9 +3198,9 @@ Task<Standard.Models.PayeeCreationResponse> CreatePayee(Standard.Models.PayeeCre
 #### Example Usage
 
 ```csharp
-var body = new Standard.Models.PayeeCreationRequest();
+var body = new StarlingBankClient.Models.PayeeCreationRequest();
 
-Standard.Models.PayeeCreationResponse result = await payees.CreatePayee(body);
+StarlingBankClient.Models.PayeeCreationResponse result = await payees.CreatePayee(body);
 
 ```
 
@@ -3223,13 +3212,13 @@ Standard.Models.PayeeCreationResponse result = await payees.CreatePayee(body);
 | 500 | Server error |
 
 
-### <a name="create_payee_account"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.CreatePayeeAccount") CreatePayeeAccount
+### <a name="create_payee_account"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.CreatePayeeAccount") CreatePayeeAccount
 
 > Create a payee account
 
 
 ```csharp
-Task<Standard.Models.PayeeAccountCreationResponse> CreatePayeeAccount(Guid payeeUid, Standard.Models.PayeeAccountCreationRequest body)
+Task<StarlingBankClient.Models.PayeeAccountCreationResponse> CreatePayeeAccount(Guid payeeUid, StarlingBankClient.Models.PayeeAccountCreationRequest body)
 ```
 
 #### Parameters
@@ -3244,9 +3233,9 @@ Task<Standard.Models.PayeeAccountCreationResponse> CreatePayeeAccount(Guid payee
 
 ```csharp
 Guid payeeUid = Guid.NewGuid();
-var body = new Standard.Models.PayeeAccountCreationRequest();
+var body = new StarlingBankClient.Models.PayeeAccountCreationRequest();
 
-Standard.Models.PayeeAccountCreationResponse result = await payees.CreatePayeeAccount(payeeUid, body);
+StarlingBankClient.Models.PayeeAccountCreationResponse result = await payees.CreatePayeeAccount(payeeUid, body);
 
 ```
 
@@ -3258,13 +3247,13 @@ Standard.Models.PayeeAccountCreationResponse result = await payees.CreatePayeeAc
 | 500 | Server error |
 
 
-### <a name="list_payment_orders_for_account"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.ListPaymentOrdersForAccount") ListPaymentOrdersForAccount
+### <a name="list_payment_orders_for_account"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.ListPaymentOrdersForAccount") ListPaymentOrdersForAccount
 
 > Get scheduled payments
 
 
 ```csharp
-Task<Standard.Models.ScheduledPayments> ListPaymentOrdersForAccount(Guid payeeUid, Guid accountUid)
+Task<StarlingBankClient.Models.ScheduledPayments> ListPaymentOrdersForAccount(Guid payeeUid, Guid accountUid)
 ```
 
 #### Parameters
@@ -3281,7 +3270,7 @@ Task<Standard.Models.ScheduledPayments> ListPaymentOrdersForAccount(Guid payeeUi
 Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.ScheduledPayments result = await payees.ListPaymentOrdersForAccount(payeeUid, accountUid);
+StarlingBankClient.Models.ScheduledPayments result = await payees.ListPaymentOrdersForAccount(payeeUid, accountUid);
 
 ```
 
@@ -3293,7 +3282,7 @@ Standard.Models.ScheduledPayments result = await payees.ListPaymentOrdersForAcco
 | 500 | Server error |
 
 
-### <a name="delete_payee"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.DeletePayee") DeletePayee
+### <a name="delete_payee"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.DeletePayee") DeletePayee
 
 > Deletes a payee
 
@@ -3326,7 +3315,7 @@ await payees.DeletePayee(payeeUid);
 | 500 | Server error |
 
 
-### <a name="delete_payee_account"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.DeletePayeeAccount") DeletePayeeAccount
+### <a name="delete_payee_account"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.DeletePayeeAccount") DeletePayeeAccount
 
 > Delete a payee account
 
@@ -3361,13 +3350,13 @@ await payees.DeletePayeeAccount(payeeUid, accountUid);
 | 500 | Server error |
 
 
-### <a name="list_payments_for_payee_account"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.ListPaymentsForPayeeAccount") ListPaymentsForPayeeAccount
+### <a name="list_payments_for_payee_account"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.ListPaymentsForPayeeAccount") ListPaymentsForPayeeAccount
 
 > View a history of payments to your payee
 
 
 ```csharp
-Task<Standard.Models.Payments> ListPaymentsForPayeeAccount(Guid payeeUid, Guid accountUid, DateTime since)
+Task<StarlingBankClient.Models.Payments> ListPaymentsForPayeeAccount(Guid payeeUid, Guid accountUid, DateTime since)
 ```
 
 #### Parameters
@@ -3386,7 +3375,7 @@ Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 DateTime since = 2020-08-17;
 
-Standard.Models.Payments result = await payees.ListPaymentsForPayeeAccount(payeeUid, accountUid, since);
+StarlingBankClient.Models.Payments result = await payees.ListPaymentsForPayeeAccount(payeeUid, accountUid, since);
 
 ```
 
@@ -3398,7 +3387,7 @@ Standard.Models.Payments result = await payees.ListPaymentsForPayeeAccount(payee
 | 500 | Server error |
 
 
-### <a name="get_serve_payee_image_file"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.PayeesController.GetServePayeeImageFile") GetServePayeeImageFile
+### <a name="get_serve_payee_image_file"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.PayeesController.GetServePayeeImageFile") GetServePayeeImageFile
 
 > Serves the image for the payee
 
@@ -3433,7 +3422,7 @@ dynamic result = await payees.GetServePayeeImageFile(payeeUid);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="savings_goals_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.SavingsGoalsController") SavingsGoalsController
+## <a name="savings_goals_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController") SavingsGoalsController
 
 ### Get singleton instance
 
@@ -3443,13 +3432,13 @@ The singleton instance of the ``` SavingsGoalsController ``` class can be access
 ISavingsGoalsController savingsGoals = client.SavingsGoals;
 ```
 
-### <a name="get_savings_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.GetSavingsGoal") GetSavingsGoal
+### <a name="get_savings_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.GetSavingsGoal") GetSavingsGoal
 
 > Get a savings goal
 
 
 ```csharp
-Task<Standard.Models.SavingsGoalV2> GetSavingsGoal(Guid accountUid, Guid savingsGoalUid)
+Task<StarlingBankClient.Models.SavingsGoalV2> GetSavingsGoal(Guid accountUid, Guid savingsGoalUid)
 ```
 
 #### Parameters
@@ -3466,7 +3455,7 @@ Task<Standard.Models.SavingsGoalV2> GetSavingsGoal(Guid accountUid, Guid savings
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.SavingsGoalV2 result = await savingsGoals.GetSavingsGoal(accountUid, savingsGoalUid);
+StarlingBankClient.Models.SavingsGoalV2 result = await savingsGoals.GetSavingsGoal(accountUid, savingsGoalUid);
 
 ```
 
@@ -3478,13 +3467,13 @@ Standard.Models.SavingsGoalV2 result = await savingsGoals.GetSavingsGoal(account
 | 500 | Server error |
 
 
-### <a name="update_savings_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.UpdateSavingsGoal") UpdateSavingsGoal
+### <a name="update_savings_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.UpdateSavingsGoal") UpdateSavingsGoal
 
 > Update an existing goal
 
 
 ```csharp
-Task<Standard.Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoal(Guid accountUid, Guid savingsGoalUid, Standard.Models.SavingsGoalRequestV2 body)
+Task<StarlingBankClient.Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoal(Guid accountUid, Guid savingsGoalUid, StarlingBankClient.Models.SavingsGoalRequestV2 body)
 ```
 
 #### Parameters
@@ -3501,9 +3490,9 @@ Task<Standard.Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoal(Guid
 ```csharp
 Guid accountUid = Guid.NewGuid();
 Guid savingsGoalUid = Guid.NewGuid();
-var body = new Standard.Models.SavingsGoalRequestV2();
+var body = new StarlingBankClient.Models.SavingsGoalRequestV2();
 
-Standard.Models.CreateOrUpdateSavingsGoalResponseV2 result = await savingsGoals.UpdateSavingsGoal(accountUid, savingsGoalUid, body);
+StarlingBankClient.Models.CreateOrUpdateSavingsGoalResponseV2 result = await savingsGoals.UpdateSavingsGoal(accountUid, savingsGoalUid, body);
 
 ```
 
@@ -3515,7 +3504,7 @@ Standard.Models.CreateOrUpdateSavingsGoalResponseV2 result = await savingsGoals.
 | 500 | Server error |
 
 
-### <a name="delete_savings_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.DeleteSavingsGoal") DeleteSavingsGoal
+### <a name="delete_savings_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.DeleteSavingsGoal") DeleteSavingsGoal
 
 > Delete a savings goal
 
@@ -3550,13 +3539,13 @@ await savingsGoals.DeleteSavingsGoal(accountUid, savingsGoalUid);
 | 500 | Server error |
 
 
-### <a name="get_savings_goals"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.GetSavingsGoals") GetSavingsGoals
+### <a name="get_savings_goals"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.GetSavingsGoals") GetSavingsGoals
 
 > Get all savings goals
 
 
 ```csharp
-Task<Standard.Models.SavingsGoalsV2> GetSavingsGoals(Guid accountUid)
+Task<StarlingBankClient.Models.SavingsGoalsV2> GetSavingsGoals(Guid accountUid)
 ```
 
 #### Parameters
@@ -3571,7 +3560,7 @@ Task<Standard.Models.SavingsGoalsV2> GetSavingsGoals(Guid accountUid)
 ```csharp
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.SavingsGoalsV2 result = await savingsGoals.GetSavingsGoals(accountUid);
+StarlingBankClient.Models.SavingsGoalsV2 result = await savingsGoals.GetSavingsGoals(accountUid);
 
 ```
 
@@ -3583,13 +3572,13 @@ Standard.Models.SavingsGoalsV2 result = await savingsGoals.GetSavingsGoals(accou
 | 500 | Server error |
 
 
-### <a name="create_savings_goal"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.CreateSavingsGoal") CreateSavingsGoal
+### <a name="create_savings_goal"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.CreateSavingsGoal") CreateSavingsGoal
 
 > Create a savings goal
 
 
 ```csharp
-Task<Standard.Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoal(Guid accountUid, Standard.Models.SavingsGoalRequestV2 body)
+Task<StarlingBankClient.Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoal(Guid accountUid, StarlingBankClient.Models.SavingsGoalRequestV2 body)
 ```
 
 #### Parameters
@@ -3604,9 +3593,9 @@ Task<Standard.Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoal(Guid
 
 ```csharp
 Guid accountUid = Guid.NewGuid();
-var body = new Standard.Models.SavingsGoalRequestV2();
+var body = new StarlingBankClient.Models.SavingsGoalRequestV2();
 
-Standard.Models.CreateOrUpdateSavingsGoalResponseV2 result = await savingsGoals.CreateSavingsGoal(accountUid, body);
+StarlingBankClient.Models.CreateOrUpdateSavingsGoalResponseV2 result = await savingsGoals.CreateSavingsGoal(accountUid, body);
 
 ```
 
@@ -3618,13 +3607,13 @@ Standard.Models.CreateOrUpdateSavingsGoalResponseV2 result = await savingsGoals.
 | 500 | Server error |
 
 
-### <a name="get_savings_goal_photo"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.GetSavingsGoalPhoto") GetSavingsGoalPhoto
+### <a name="get_savings_goal_photo"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.GetSavingsGoalPhoto") GetSavingsGoalPhoto
 
 > Get the photo associated with a savings goal
 
 
 ```csharp
-Task<Standard.Models.SavingsGoalPhotoV2> GetSavingsGoalPhoto(Guid accountUid, Guid savingsGoalUid)
+Task<StarlingBankClient.Models.SavingsGoalPhotoV2> GetSavingsGoalPhoto(Guid accountUid, Guid savingsGoalUid)
 ```
 
 #### Parameters
@@ -3641,7 +3630,7 @@ Task<Standard.Models.SavingsGoalPhotoV2> GetSavingsGoalPhoto(Guid accountUid, Gu
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.SavingsGoalPhotoV2 result = await savingsGoals.GetSavingsGoalPhoto(accountUid, savingsGoalUid);
+StarlingBankClient.Models.SavingsGoalPhotoV2 result = await savingsGoals.GetSavingsGoalPhoto(accountUid, savingsGoalUid);
 
 ```
 
@@ -3653,17 +3642,17 @@ Standard.Models.SavingsGoalPhotoV2 result = await savingsGoals.GetSavingsGoalPho
 | 500 | Server error |
 
 
-### <a name="add_money"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.AddMoney") AddMoney
+### <a name="add_money"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.AddMoney") AddMoney
 
 > Add money into a savings goal
 
 
 ```csharp
-Task<Standard.Models.SavingsGoalTransferResponseV2> AddMoney(
+Task<StarlingBankClient.Models.SavingsGoalTransferResponseV2> AddMoney(
         Guid accountUid,
         Guid savingsGoalUid,
         Guid transferUid,
-        Standard.Models.TopUpRequestV2 body)
+        StarlingBankClient.Models.TopUpRequestV2 body)
 ```
 
 #### Parameters
@@ -3682,9 +3671,9 @@ Task<Standard.Models.SavingsGoalTransferResponseV2> AddMoney(
 Guid accountUid = Guid.NewGuid();
 Guid savingsGoalUid = Guid.NewGuid();
 Guid transferUid = Guid.NewGuid();
-var body = new Standard.Models.TopUpRequestV2();
+var body = new StarlingBankClient.Models.TopUpRequestV2();
 
-Standard.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.AddMoney(accountUid, savingsGoalUid, transferUid, body);
+StarlingBankClient.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.AddMoney(accountUid, savingsGoalUid, transferUid, body);
 
 ```
 
@@ -3696,17 +3685,17 @@ Standard.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.AddMon
 | 500 | Server error |
 
 
-### <a name="update_withdraw_money"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.UpdateWithdrawMoney") UpdateWithdrawMoney
+### <a name="update_withdraw_money"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.UpdateWithdrawMoney") UpdateWithdrawMoney
 
 > Withdraw money from a savings goal
 
 
 ```csharp
-Task<Standard.Models.SavingsGoalTransferResponseV2> UpdateWithdrawMoney(
+Task<StarlingBankClient.Models.SavingsGoalTransferResponseV2> UpdateWithdrawMoney(
         Guid accountUid,
         Guid savingsGoalUid,
         Guid transferUid,
-        Standard.Models.WithdrawalRequestV2 body)
+        StarlingBankClient.Models.WithdrawalRequestV2 body)
 ```
 
 #### Parameters
@@ -3725,9 +3714,9 @@ Task<Standard.Models.SavingsGoalTransferResponseV2> UpdateWithdrawMoney(
 Guid accountUid = Guid.NewGuid();
 Guid savingsGoalUid = Guid.NewGuid();
 Guid transferUid = Guid.NewGuid();
-var body = new Standard.Models.WithdrawalRequestV2();
+var body = new StarlingBankClient.Models.WithdrawalRequestV2();
 
-Standard.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.UpdateWithdrawMoney(accountUid, savingsGoalUid, transferUid, body);
+StarlingBankClient.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.UpdateWithdrawMoney(accountUid, savingsGoalUid, transferUid, body);
 
 ```
 
@@ -3739,13 +3728,13 @@ Standard.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.Update
 | 500 | Server error |
 
 
-### <a name="get_recurring_transfer"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.GetRecurringTransfer") GetRecurringTransfer
+### <a name="get_recurring_transfer"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.GetRecurringTransfer") GetRecurringTransfer
 
 > Get the recurring transfer of a savings goal
 
 
 ```csharp
-Task<Standard.Models.ScheduledSavingsPaymentV2> GetRecurringTransfer(Guid accountUid, Guid savingsGoalUid)
+Task<StarlingBankClient.Models.ScheduledSavingsPaymentV2> GetRecurringTransfer(Guid accountUid, Guid savingsGoalUid)
 ```
 
 #### Parameters
@@ -3762,7 +3751,7 @@ Task<Standard.Models.ScheduledSavingsPaymentV2> GetRecurringTransfer(Guid accoun
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.ScheduledSavingsPaymentV2 result = await savingsGoals.GetRecurringTransfer(accountUid, savingsGoalUid);
+StarlingBankClient.Models.ScheduledSavingsPaymentV2 result = await savingsGoals.GetRecurringTransfer(accountUid, savingsGoalUid);
 
 ```
 
@@ -3774,13 +3763,13 @@ Standard.Models.ScheduledSavingsPaymentV2 result = await savingsGoals.GetRecurri
 | 500 | Server error |
 
 
-### <a name="create_or_update_recurring_transfer"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.CreateOrUpdateRecurringTransfer") CreateOrUpdateRecurringTransfer
+### <a name="create_or_update_recurring_transfer"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.CreateOrUpdateRecurringTransfer") CreateOrUpdateRecurringTransfer
 
 > Create a recurring transfer into a savings goal
 
 
 ```csharp
-Task<Standard.Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTransfer(Guid accountUid, Guid savingsGoalUid, Standard.Models.ScheduledSavingsPaymentRequestV2 body)
+Task<StarlingBankClient.Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTransfer(Guid accountUid, Guid savingsGoalUid, StarlingBankClient.Models.ScheduledSavingsPaymentRequestV2 body)
 ```
 
 #### Parameters
@@ -3797,9 +3786,9 @@ Task<Standard.Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTrans
 ```csharp
 Guid accountUid = Guid.NewGuid();
 Guid savingsGoalUid = Guid.NewGuid();
-var body = new Standard.Models.ScheduledSavingsPaymentRequestV2();
+var body = new StarlingBankClient.Models.ScheduledSavingsPaymentRequestV2();
 
-Standard.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.CreateOrUpdateRecurringTransfer(accountUid, savingsGoalUid, body);
+StarlingBankClient.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.CreateOrUpdateRecurringTransfer(accountUid, savingsGoalUid, body);
 
 ```
 
@@ -3811,7 +3800,7 @@ Standard.Models.SavingsGoalTransferResponseV2 result = await savingsGoals.Create
 | 500 | Server error |
 
 
-### <a name="delete_recurring_transfer"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SavingsGoalsController.DeleteRecurringTransfer") DeleteRecurringTransfer
+### <a name="delete_recurring_transfer"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SavingsGoalsController.DeleteRecurringTransfer") DeleteRecurringTransfer
 
 > Delete the recurring transfer of a savings goal
 
@@ -3848,7 +3837,7 @@ await savingsGoals.DeleteRecurringTransfer(accountUid, savingsGoalUid);
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="settle_up_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.SettleUpController") SettleUpController
+## <a name="settle_up_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.SettleUpController") SettleUpController
 
 ### Get singleton instance
 
@@ -3858,27 +3847,27 @@ The singleton instance of the ``` SettleUpController ``` class can be accessed f
 ISettleUpController settleUp = client.SettleUp;
 ```
 
-### <a name="get_settle_up_profile"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SettleUpController.GetSettleUpProfile") GetSettleUpProfile
+### <a name="get_settle_up_profile"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SettleUpController.GetSettleUpProfile") GetSettleUpProfile
 
 > Fetch Settle Up profile for an account holder
 
 
 ```csharp
-Task<Standard.Models.SettleUpProfile> GetSettleUpProfile()
+Task<StarlingBankClient.Models.SettleUpProfile> GetSettleUpProfile()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.SettleUpProfile result = await settleUp.GetSettleUpProfile();
+StarlingBankClient.Models.SettleUpProfile result = await settleUp.GetSettleUpProfile();
 
 ```
 
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png "Client.Tests.Controllers.SubscriptionsController") SubscriptionsController
+## <a name="subscriptions_controller"></a>![Class: ](https://www.collaborotech.com/img/class.png "StarlingBankClient.Tests.Controllers.SubscriptionsController") SubscriptionsController
 
 ### Get singleton instance
 
@@ -3888,20 +3877,20 @@ The singleton instance of the ``` SubscriptionsController ``` class can be acces
 ISubscriptionsController subscriptions = client.Subscriptions;
 ```
 
-### <a name="get_account_holder_subscription"></a>![Method: ](https://apidocs.io/img/method.png "Client.Tests.Controllers.SubscriptionsController.GetAccountHolderSubscription") GetAccountHolderSubscription
+### <a name="get_account_holder_subscription"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBankClient.Tests.Controllers.SubscriptionsController.GetAccountHolderSubscription") GetAccountHolderSubscription
 
 > Fetch product subscription details for an account holder
 
 
 ```csharp
-Task<Standard.Models.AccountHolderSubscription> GetAccountHolderSubscription()
+Task<StarlingBankClient.Models.AccountHolderSubscription> GetAccountHolderSubscription()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.AccountHolderSubscription result = await subscriptions.GetAccountHolderSubscription();
+StarlingBankClient.Models.AccountHolderSubscription result = await subscriptions.GetAccountHolderSubscription();
 
 ```
 
