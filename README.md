@@ -663,7 +663,7 @@ IWebhooksController webhooks = client.Webhooks;
 
 
 ```csharp
-Task CreateDispatchWebhook(Standard.Models.DefaultWebhookPayloadModel body = null)
+Task CreateDispatchWebhook(StarlingBankClient.Models.DefaultWebhookPayloadModel body = null)
 ```
 
 #### Parameters
@@ -676,7 +676,7 @@ Task CreateDispatchWebhook(Standard.Models.DefaultWebhookPayloadModel body = nul
 #### Example Usage
 
 ```csharp
-var body = new Standard.Models.DefaultWebhookPayloadModel();
+var body = new StarlingBankClient.Models.DefaultWebhookPayloadModel();
 
 await webhooks.CreateDispatchWebhook(body);
 
@@ -707,14 +707,14 @@ IAccountsController accounts = client.Accounts;
 
 
 ```csharp
-Task<Standard.Models.Accounts> GetAccounts()
+Task<StarlingBankClient.Models.Accounts> GetAccounts()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.Accounts result = await accounts.GetAccounts();
+StarlingBankClient.Models.Accounts result = await accounts.GetAccounts();
 
 ```
 
@@ -732,7 +732,7 @@ Standard.Models.Accounts result = await accounts.GetAccounts();
 
 
 ```csharp
-Task<Standard.Models.AccountStatementPeriods> GetAvailablePeriods(Guid accountUid)
+Task<StarlingBankClient.Models.AccountStatementPeriods> GetAvailablePeriods(Guid accountUid)
 ```
 
 #### Parameters
@@ -747,7 +747,7 @@ Task<Standard.Models.AccountStatementPeriods> GetAvailablePeriods(Guid accountUi
 ```csharp
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.AccountStatementPeriods result = await accounts.GetAvailablePeriods(accountUid);
+StarlingBankClient.Models.AccountStatementPeriods result = await accounts.GetAvailablePeriods(accountUid);
 
 ```
 
@@ -773,7 +773,7 @@ Standard.Models.AccountStatementPeriods result = await accounts.GetAvailablePeri
 
 
 ```csharp
-Task<Standard.Models.AccountIdentifiers> GetAccountIdentifiers(Guid accountUid)
+Task<StarlingBankClient.Models.AccountIdentifiers> GetAccountIdentifiers(Guid accountUid)
 ```
 
 #### Parameters
@@ -788,7 +788,7 @@ Task<Standard.Models.AccountIdentifiers> GetAccountIdentifiers(Guid accountUid)
 ```csharp
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.AccountIdentifiers result = await accounts.GetAccountIdentifiers(accountUid);
+StarlingBankClient.Models.AccountIdentifiers result = await accounts.GetAccountIdentifiers(accountUid);
 
 ```
 
@@ -812,7 +812,7 @@ Standard.Models.AccountIdentifiers result = await accounts.GetAccountIdentifiers
 
 
 ```csharp
-Task<Standard.Models.BalanceV2> GetAccountBalance(Guid accountUid)
+Task<StarlingBankClient.Models.BalanceV2> GetAccountBalance(Guid accountUid)
 ```
 
 #### Parameters
@@ -827,7 +827,7 @@ Task<Standard.Models.BalanceV2> GetAccountBalance(Guid accountUid)
 ```csharp
 Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
 
-Standard.Models.BalanceV2 result = await accounts.GetAccountBalance(accountUid);
+StarlingBankClient.Models.BalanceV2 result = await accounts.GetAccountBalance(accountUid);
 
 ```
 
@@ -845,7 +845,7 @@ Standard.Models.BalanceV2 result = await accounts.GetAccountBalance(accountUid);
 
 
 ```csharp
-Task<Standard.Models.ConfirmationOfFundsResponse> GetConfirmationOfFunds(Guid accountUid, long targetAmountInMinorUnits)
+Task<StarlingBankClient.Models.ConfirmationOfFundsResponse> GetConfirmationOfFunds(Guid accountUid, long targetAmountInMinorUnits)
 ```
 
 #### Parameters
@@ -862,7 +862,7 @@ Task<Standard.Models.ConfirmationOfFundsResponse> GetConfirmationOfFunds(Guid ac
 Guid accountUid = Guid.NewGuid();
 long targetAmountInMinorUnits = 70;
 
-Standard.Models.ConfirmationOfFundsResponse result = await accounts.GetConfirmationOfFunds(accountUid, targetAmountInMinorUnits);
+StarlingBankClient.Models.ConfirmationOfFundsResponse result = await accounts.GetConfirmationOfFunds(accountUid, targetAmountInMinorUnits);
 
 ```
 
@@ -964,14 +964,14 @@ IBusinessesController businesses = client.Businesses;
 
 
 ```csharp
-Task<Standard.Models.Business> GetBusiness()
+Task<StarlingBankClient.Models.Business> GetBusiness()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.Business result = await businesses.GetBusiness();
+StarlingBankClient.Models.Business result = await businesses.GetBusiness();
 
 ```
 
@@ -989,14 +989,14 @@ Standard.Models.Business result = await businesses.GetBusiness();
 
 
 ```csharp
-Task<Standard.Models.AddressV2> GetRegisteredAddress()
+Task<StarlingBankClient.Models.AddressV2> GetRegisteredAddress()
 ```
 
 #### Example Usage
 
 ```csharp
 
-Standard.Models.AddressV2 result = await businesses.GetRegisteredAddress();
+StarlingBankClient.Models.AddressV2 result = await businesses.GetRegisteredAddress();
 
 ```
 
