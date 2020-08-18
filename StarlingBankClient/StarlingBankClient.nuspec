@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>StarlingBankClient</id>
+    <version>1.0.0</version>
+    <title>StarlingBankClient</title>
+    <authors>James Mevin</authors>
+    <iconUrl>https://developer.starlingbank.com/dev-header.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Starling API enables seamless integration of Starling account and transactional data into your application.
+You can, subject to permission, use it to view account holder data and to automate actions on their accounts.
+
+Our API is RESTful, using predictable and resource-orientated URLs with standard HTTP methods and status codes.
+All responses (expected and errors) are in JSON format.
+We also offer webhooks so our API can notify you of events.
+
+All API requests are authorised using [OAuth2](http://oauth.net/2/) with different permission scopes required depending on the services you wish to use.
+This allows our account holders to see exactly what data your application can access and allows us to ensure only trusted partners can carry out significant actions, such as transferring money on our account holder's behalf.
+
+We want to make integrating with Starling as easy as possible.
+If you have feedback on our APIs or documentation or there is something you wish to see covered, please get in touch by through the [Starling Developer Slack](https://developer.starlingbank.com/community) or by [email](mailto:developer@starlingbank.com).
+
+### Availability
+
+Our APIs are open to everyone to develop and test applications.
+
+First, you need to [Sign up](https://developer.starlingbank.com/signup) for a developer account in our Developer portal.
+Then, you can create a personal access token to access your own Starling Bank account if you have one, although you won't be able to make payments from your account using a personal access token.
+To access other Starling bank accounts, you need to register your application.
+Once you have registered your application, you can test it in our sandbox environment against dummy data.
+
+If you want to access data from live Starling Bank accounts, or make payments from your own account, you need to apply to upgrade your registered application.
+We will then review your request, and get back to you.
+
+The base URLs for the APIs are:
+- SANDBOX: `https://api-sandbox.starlingbank.com`
+- PRODUCTION: `https://api.starlingbank.com`
+
+#### Personal access tokens
+
+As both a developer and Starling account holder, you can issue personal access tokens to yourself at any time without going through the OAuth authorisation process.
+They do not expire so you don't need to worry about refreshing them.
+
+To create a personal access token:
+- [Login](https://developer.starlingbank.com/login) to the Developer Portal
+- Go to the [personal access tokens](https://developer.starlingbank.com/personal) page
+- Link your Starling Bank account to your Starling Developer account
+- Create a token, selecting the scopes you require (note that the `pay-local:create` scope is not available for personal access tokens)
+- Use the token to make API requests against your own Starling bank account
+
+#### Registering an application
+
+To use our APIs to access Starling Bank accounts other than your own, you must [register an application](https://developer.starlingbank.com/application) in our developer portal.
+This gives you a unique `client_id` and `client_secret` (which, as the name suggests, should be kept secret).
+You can use these to get an access token which allows you to access other Starling Bank accounts (see **OAuth flow** below).
+
+Registering your application gives you access to our [sandbox environment](https://developer.starlingbank.com/sandbox).
+Here, you can create dummy customers, accounts and transactions, and test your application against these.
+
+#### Accessing live Starling bank accounts
+
+If you want to access live Starling Bank accounts, other than your own, you must apply to [upgrade your application](https://developer.starlingbank.com/partner) and provide the additional information we require.
+
+#### Live accounts and eIDAS certificates
+
+To access live Starling Bank accounts other than your own, your application also needs a valid eIDAS certificate.
+The eIDAS certificate must be qualified (either QWAC or QSeal), and must be unique for each application.
+The eIDAS certificate should have roles that cover the [permissions](https://developer.starlingbank.com/permissions) required by your application, so we can automatically grant you the associated scopes.
+You can upload your eIDAS certificate in the **Application** page in our Developer Portal.
+
+We require eIDAS certificates for all new applications.
+If your application is already registered with us, please upload a suitable eIDAS certificate as soon as possible.
+We will be requiring valid eIDAS certificates for all applications in the future. Your current authentication process will not change.
+
+#### SANDBOX Environment
+
+Our sandbox environment gives you the chance to thoroughly test your application against our API.
+Within the [sandbox interface](https://developer.starlingbank.com/sandbox) you can:
+- create account holders of different types for your application
+- simulate card, FPS and BACS transactions
+- get access tokens for sandbox customers
+
+#### Permissions
+
+Different API endpoints require different permissions to access data. Permissions correspond to OAuth scopes.
+These permissions are grouped into the following categories:
+
+| Permission category | Description |
+| --- | :---|
+| `Read Personal` | Read personal information |
+| `Edit Personal` | Edit personal information |
+| `Read Financial` | Read financial information and transactions |
+| `Edit Financial` | Edit financial information and transactions |
+| `Transact Financial` | Create financial transactions on account holder's behalf |
+| `Customer Onboarding` | Onboard account holders onto the platform |
+
+A full breakdown of access scopes and their assigned permissions is available on the [permissions information](https://developer.starlingbank.com/permissions) page.
+
+Access is given to an application - not to a developer account. This means each application you register has its own permissions.
+
+### OAuth flow
+
+Starling uses [OAuth2](http://oauth.net/2/) to authenticate and authorise requests to our API.
+This allows Starling Bank account holders to authorise your application to access their data, without handing over their Starling credentials.
+
+For those who are unfamiliar with OAuth2, the process is:
+1. You direct the user to Starling (usually via a button in your application)
+2. We authenticate the user then they authorise your application to access their data
+3. Starling redirects the user back to your application and gives you an authorisation code
+4. You exchange the authorisation code for an access token and a refresh token
+5. You use the Starling API, providing the access token on every request
+6. (later) Before the refresh token expires, you use the refresh token to obtain a new access token and refresh token.
+
+If you have a Starling Bank account and want to play around against your own data, you can create a [personal access token](https://developer.starlingbank.com/personal) to skip straight to step 5 for yourself.
+
+#### 1. Redirect to Starling
+
+Starling authentication can be used in two ways:
+- Connect your Starling account: The account holder may already have an account with your application and wishes to connect this to their Starling account so they can interact with their account via your application.
+- Login with Starling: The account holder may be new to your application and wishes to log in with their Starling credentials, granting access to their Starling data in the process, rather than signing up for another account.
+
+In both cases, the user starts in your application.
+This may be a web page or native application, either on their phone with the Starling app or a separate device.
+
+The user will click a button to connect or login with Starling.
+We provide standard assets and resources for this [on Google Drive](https://drive.google.com/drive/folders/1PSSUsCriJx5_pxTilxYfaWpS1eH_Iv6i).
+
+Your application redirects the user to the Starling OAuth site so we can verify their identity and confirm they wish to share their data with your application before issuing access tokens.
+
+Redirect the account holder to:
+- SANDBOX: `https://oauth-sandbox.starlingbank.com`
+- PRODUCTION: `https://oauth.starlingbank.com`
+
+With the query parameters:
+
+| Parameter | Value |
+| ----- | ----- |
+| `client_id` | Your unique client id for the [registered application](https://developer.starlingbank.com/application) |
+| `response_type` | Type of response you are expecting - this must be `code` |
+| `state` | An unpredictable randomised string used to protect against cross-site request forgery ([more details](https://auth0.com/docs/protocols/oauth2/oauth-state))
+| `redirect_uri` | (Optional) A URI which to redirect the user back to after authorising your application. If provided, this must be equal to or a sub-resource of the redirect URI provided when registering your [application](https://developer.starlingbank.com/application) for security reasons. |
+
+An example valid URI:
+
+```
+https://oauth.starlingbank.com/?client_id=aT6TPtsTJvhB1wzGbrRp&response_type=code&state=249a34c4-4588-449a-9ad9-f192581e52fd
+```
+
+#### 2. Account holder authenticates themselves and authorises your application
+
+We identify and verify the account holder (authentication).
+
+On a phone with the Starling app installed, the user will be redirected (by the OS) to review the access request in-app.
+On other devices, users will be required to approve the request in-app, either by scanning a QR code or via a push notification.
+We will explain the relevant process to the account holder.
+
+We ask for permission to share their data with your application (authorisation).
+
+We will tell the user what data will be shared and give the user the option to deny or approve this.
+If the user denies access, they user will be redirected to your `redirect_uri` with an `error` of `access_denied`.
+
+#### 3. Get the authorisation code
+
+Once we've verified the user's identity and the user has authorised your application, we will redirect them to the `redirect_uri` with two parameters:
+
+| Parameter | Value |
+| ----- | ----- |
+| `code` | A temporary authorisation code you can use to obtain an access token for the account holder's data. The code will expire after a few minutes.
+| `state` | The `state` you sent us in step 1. You **must** verify the state matches exactly and abort the process if it does not. |
+
+For example, if the `redirect_uri` was `https://your.application.url/redirect/path` the user might be redirected to:
+
+```
+https://your.application.url/redirect/path?code=edv79CsZn80frhfxgF4o58aXAc7enpgB1wyv&state=249a34c4-4588-449a-9ad9-f192581e52fd
+```
+
+##### Redirects to native mobile applications
+
+If you are developing a native mobile application, you will need to register your application with the OS before sending the user to Starling.
+This will allow the OS to seamlessly return the user into the correct screen of your application when we redirect the user back.
+
+iOS [Universal links](https://developer.apple.com/ios/universal-links/) allow your application to use the same URIs as your web site.
+This is the recommended approach (especially if you have a website and mobile app).
+Alternatively you can use [custom URL schemes](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app), which can be quicker to get going with.
+
+Android [App links](https://developer.android.com/training/app-links/index.html) offer the same functionality on Android, allowing a common URI for your web page and deep links into your native application.
+
+#### 4. Exchange for an access token
+
+This authorisation code can now be exchanged for an access token, which you can think of as an encoded user name and password specific to your application and the account holder.
+Treat it as such, and keep it secure.
+
+Each access token is valid for a single registered application for a single account holder.
+
+To exchange the authorisation code, `POST` the following parameters as `application/x-www-form-urlencoded` to one of:
+- SANDBOX: `https://api-sandbox.starlingbank.com/oauth/access-token`
+- PRODUCTION: `https://api.starlingbank.com/oauth/access-token`
+
+As you need to send the `client_secret`, which should never be shared publicly, this must be done from your server.
+
+| Parameter | Value |
+| ----- | ----- |
+| `code` | The authorisation code you received as the `code` query parameter in step 3 |
+| `client_id` | The unique client identifier of your [registered application](https://developer.starlingbank.com/application) |
+| `client_secret` | The client secret for your [registered application](https://developer.starlingbank.com/application) (how we verify that the request is really from you) |
+| `grant_type` | For an authorisation code exchange this must be `authorization_code` |
+| `redirect_uri` | The redirect URI the account holder was sent to when Starling returned with the access code in step 3 (this is validated as a further security check) |
+
+The response returns the details of the access token in `application/json` format, for example:
+
+```json
+{
+    "access_token": "eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAQ-_pT1TALVKOt8.uLjFJikw--DDv3Pf",
+    "refresh_token": "De2yfE70KcoFkaEQvVW236s2UVaVexzKGUjHYAG2OGutlO5GLJiSN0rv2P8dean1",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "scope": "account:read balance:read card-control:edit card:read transaction:read"
+}
+```
+
+| Property | Description |
+| ----- | ----- |
+| `access_token` | The secret access token to authenticate your requests to our API on behalf of the end user |
+| `refresh_token` | The secret refresh token to use to obtain a new access token when the existing token is near expiry |
+| `token_type` | The type of token that has been issued - this is always `Bearer` |
+| `expires_in` | Number of seconds until the access token expires |
+| `scope` | Extent of the authorisation granted by the account holder. The access token can only be used to call services available within the approved scope |
+
+You should treat the access and refresh tokens as arbitrary length strings.
+
+##### Access token scopes
+
+Access tokens are restricted to a particular set of resources.
+Each token is issued with a space-separated list of scopes it provides, and each resource method defines the scope(s) required to make the call.
+Attempting to access a method beyond the scope of the access token results in a `403 Forbidden` error.
+
+If you wish to expand the scopes you can request, please [apply for upgraded permissions](https://developer.starlingbank.com/partner).
+
+##### eIDAS certificates
+
+**NOTE:** *This feature will be deprecated in the future. We recommend that new applications use `client_id` and `client_secret` to obtain access tokens*.
+
+If you have a **qualified** eIDAS certificate - one signed by a QTSP's certificate present on a Trusted List - you can use that in place of your `client_id` and `client_secret` in an access token request.
+To do this, `POST` a signed `application/x-www-form-urlencoded` request to `/oauth/access-token/eidas`, omitting the `client_id` and `client_secret` parameters.
+
+This request must be signed with the private key used to generate your eIDAS certificate (see **Message signing** below).
+You must have previously uploaded the public key of this certificate through the Developer Portal.
+
+#### 5. Use the API
+
+That's it! You now have the access token needed to call the Starling APIs on behalf of the account holder.
+When making requests, authenticate with the `Authorization` header set to `Bearer $access_token`
+For example:
+
+```
+Bearer eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAQ-_pT1TALVKOt8.uLjFJikw--DDv3Pf
+```
+
+When hitting the API, it'd be helpful to provide a `User-Agent` header that will allow us to identify you in case we need to get in touch.
+
+#### 6. (later) Refresh the access token and refresh token
+
+To minimise the period of risk if an access token is compromised, the access token expires after a predetermined period (1 hour in production, 24 hours in SANDBOX).
+To carry on accessing resources on the account holder's behalf, you must refresh the access token using the refresh token retrieved in step 4.
+Refresh tokens are long lived (6 months) and can be used prior to, or after, the associated access token expiry.
+
+When you refresh the your access token, you also receive a new refresh token.
+You should discard your old refresh token, and use the new refresh token the next time you refresh the access token.
+Your old refresh token is valid until you successfully refresh the access token using the new refresh token.
+So, if you experience a network failure or similar, and do not receive the new refresh token, you can try again (repeatedly if necessary) using the old refresh token.
+
+If the access token expires, you cannot access the account holder's resources, but, unless the refresh token has also expired, you can still refresh the access token to regain access.
+If the account holder revokes the access token, or the access token is compromised, the account holder must re-authorise the application.
+
+To refresh an access token, `POST` the following parameters as `application/x-www-form-urlencoded` to one of:
+- SANDBOX: `https://api-sandbox.starlingbank.com/oauth/access-token`
+- PRODUCTION: `https://api.starlingbank.com/oauth/access-token`
+
+As you need to send the `client_secret`, which should never be shared publicly, this must be done from your server.
+
+| Parameter | Value |
+| ----- | ----- |
+| `refresh_token` | The refresh token received with the access token |
+| `client_id` | The unique client identifier of your [registered application](https://developer.starlingbank.com/application) |
+| `client_secret` | The client secret for your [registered application](https://developer.starlingbank.com/application) (how we verify that the request is really from you) |
+| `grant_type` | For a refresh token exchange this must be `refresh_token` |
+
+The response is in the same format as the response to the initial token exchange.
+
+##### eIDAS certificates
+
+**NOTE:** *This feature will be deprecated in the future. We recommend that new applications use `client_id` and `client_secret` to obtain access tokens*.
+
+As with the initial access token exchange, you can use your qualified eIDAS certificate in place of your `client_id` and `client_secret` in a refresh token request.
+To do this, `POST` a signed `application/x-www-form-urlencoded` request to `/oauth/access-token/eidas`, omitting the `client_id` and `client_secret` parameters.
+
+This request must be signed with the private key used to generate your eIDAS certificate (See **Message signing** below).
+You must have previously uploaded the public key of this certificate through the Developer Portal.
+
+#### Additional OAuth Error codes
+
+As well as the standard errors defined by the [OAuth2](https://tools.ietf.org/html/rfc6749) specification, there are further client side error codes that could be received if an HTTP Status `400` is returned from the OAuth authorisation process:
+
+|HTTP Status | Error           | Error description|
+|------------|-----------------|------------------|
+|`400`       |`invalid_request`|`grant_type must be provided`|
+|`400`       |`invalid_request`|`grant_type must be either authorization_code or refresh_token`|
+|`400`       |`invalid_request`|`Unexpected parameter: 'parameterName'`|
+|`400`       |`invalid_request`|`Incorrect content type. Must be application/x-www-form-urlencoded`|
+
+#### Show me some code!
+
+In English, and with explanations, this sounds like quite a lot of work.
+Fear not, it's quick to get going and some tools even handle it for you (Amazon Alexa Skills handle OAuth2 automatically for example).
+
+It's probably easier to explain in code.
+Our engineers love to play with new technology so, to prove the concept, we spent a few hours knocking up a sample web application, available on [GitHub](https://github.com/starlingbank/starling-api-web-starter-kit).
+The client and server are both in Node.js (the server's necessary to avoid the client secret being sent to the browser).
+
+### Security
+
+We want our bank to be as open and accessible as possible while maintaining a secure environment for all our account holders.
+This is why we need to get to know you before permitting wider access to our APIs.
+
+To protect account holder data your application MUST:
+* Not transmit the `client_secret` to the browser. This must remain confidential on the production server only
+* Maintain a secure production environment with limited and monitored access
+* Hold access and refresh tokens in a secure store with limited and monitored access
+* Use HTTPS resources for receiving the authorisation code redirect and for displaying Starling data
+* Conform with relevant national and international data and personal information protection laws
+
+### Using the APIs
+
+The API uses four HTTP methods:
+| Method | Usage |
+| ----- | ----- |
+| `POST` (create) | Makes a new object, always returns the UUID for the object made |
+| `GET` (read) | Returns details of the requested object |
+| `PUT` (update) | Updates an existing object, usually no response content is returned |
+| `DELETE` (delete) | Deletes an existing object, usually no response content is returned |
+
+All responses, including errors, return JSON.
+The `POST` and `PUT` methods require JSON for the request body.
+
+#### Errors
+
+We use common HTTP status codes in the response header to indicate success or failure, including, but not limited to, the following:
+
+| HTTP Status | Meaning |
+| ----- | ----- |
+| `200` OK | Request succeeded and processed OK |
+| `202` Accepted | Received was received OK and will process shortly. Typically you will receive a UUID in response that can be used to check progress |
+| `204` No Content | The request was successfully fulfilled and there is no additional content to send in the response payload body. |
+| `400` Bad Request | Something was wrong with the request. Check the request to address the error included in the response |
+| `401` Unauthorized | You are not authorised to access the requested data |
+| `403` Forbidden | Your authentication failed, usually because the access token has expired, or you tried to access a resource outside the scope of the token |
+| `404` Not Found | The requested resource does not exist |
+| `500` Server Error | Something went wrong on our side - get in touch so we can look into it! |
+
+#### SSL Pinning
+
+SSL Pinning is a client-side security technique to avoid man-in-the-middle attacks by manually re-validating the certificate.
+We highly recommend the use of SSL pinning in production.
+
+During the SSL handshake it verifies the certificate provided by the server is a specific, pre-agreed certificate.
+This prevents data loss in the unlikely event that an attacker hijacks our API URL and uses a different valid certificate (i.e. one signed by a trusted CA) to pose as us.
+
+You can download our X509 public certificates here:
+- [PRODUCTION Certificate](https://developer.starlingbank.com/starling-prod-api-certificate.crt)
+- [SANDBOX Certificate](https://developer.starlingbank.com/starling-sandbox-api-certificate.crt)
+
+You will need to embed the certificate during development and associate it with our domain.
+Then, during the SSL challenge with us your application should validate our identity with the certificates.
+Libraries to do this are available for almost all languages and platforms, for example `TrustKit` on iOS and `okhttp` for Java.
+
+### Webhooks
+
+Webhooks subscriptions are available to OAuth applications for a wide range of events.
+Events are loosely grouped into two categories - transactional events and account events.
+
+These enable you to serve real-time information and notify users as events occur without having to poll our servers for changes.
+
+#### Webhook Usage
+
+To create a webhook for your [registered application](https://developer.starlingbank.com/application), you need to supply a `HTTPS` production payload URL and chose the events you would like to subscribe to.
+
+You can also set up a [personal webhook](https://developer.starlingbank.com/personal/webhook), which will notify you of events that occur on your own account.
+
+When an event occurs, our server will send a POST request with the payload as the request body to your chosen URL.
+
+#### Webhook Security
+
+It is important you validate webhooks have originated from Starling's servers and have not been tampered with in transit.
+
+This can be done using a shared secret that is used to sign all hooks.
+The signature is placed in the header of the request using `X-Hook-Signature`. It is the Base64 encoding of the `SHA-512` digest of the `secret + payload`.
+
+To validate this, make sure the library you are using provides access to the raw JSON payload.
+Any modification or formatting of the payload will leave you unable to validate the signature.
+
+Never hardcode the webhook shared secret into your application - use a secrets manager, environment variable or configuration property instead.
+
+Code samples for this are available on [GitHub](https://github.com/starlingbank/api-samples/tree/master/webhook-verification).
+
+### Message Signing
+
+Some API requests require stricter levels of security (e.g. for payment instruction).
+We use digital signatures to validate integrity and provide non-repudiation.
+
+The overview of the process is:
+1. You generate two key pairs:
+    - an API key pair to sign API requests
+    - a rotation key pair to sign new key uploads
+2. You upload the public key from each key pair to the Developer Portal
+3. You make signed requests (using the private API key) to endpoints requiring signatures
+4. (later) You rotate keys, signing the key rotation request with the private rotation key
+
+#### 1. Generate key pairs
+
+You'll need to generate two public/private key pairs - an API key to sign API requests, and a rotation key used just to sign new key uploads.
+
+In the production environment, you must keep the private keys of your key pairs secure.
+
+Key Requirements:
+
+- Keys must be either RSA or ECDSA keys (RSA is mandatory for eIDAS certificates).
+- RSA keys should have a length of either 2048 or 4096.
+- ECDSA keys should have a length of 256.
+- RSA keys should not be SSH keys. All valid RSA key bodies will start `MII`.
+
+You can generate RSA key pairs satisfying these requirements using [OpenSSL](https://www.openssl.org/):
+
+```bash
+openssl genpkey -out starling-api-private.key -algorithm RSA -pkeyopt rsa_keygen_bits:4096
+openssl rsa -in starling-api-private.key -pubout -out starling-api-public.key
+
+openssl genpkey -out starling-rotation-private.key -algorithm RSA -pkeyopt rsa_keygen_bits:4096
+openssl rsa -in starling-rotation-private.key -pubout -out starling-rotation-public.key
+```
+
+#### 2. Upload public keys
+
+To upload keys, go to the 'keys' section in your [registered application](https://developer.starlingbank.com/application).
+
+Here you can select the environment (production or sandbox) and add your public API key and public rotation key.
+
+The key should be one of the following:
+- a complete public key, across new lines, and with headers and footers such as `-----BEGIN PUBLIC KEY-----`
+- the whole body of the public key in a single line (beginning `MII`) without headers and footers
+
+Tip: to quickly copy keys to the clipboard you can use:
+
+```bash
+# Windows
+cat starling-api-public.key | clip
+cat starling-rotation-public.key | clip
+
+# Mac
+cat starling-api-public.key | pbcopy
+cat starling-rotation-public.key | pbcopy
+
+# Linux
+cat starling-api-public.key | xclip
+cat starling-rotation-public.key | xclip
+```
+
+#### 3. Make signed requests
+
+Now you're ready to start making signed requests to the API!
+
+All requests must be appropriately signed, and include the access token, with an `Authorization` header of the form:
+
+```
+Bearer ...;Signature keyid="...",algorithm="...",headers="...",signature="..."
+```
+
+where:
+- `keyid` is the key uid of the API key used to sign the request
+    - This is available from the 'keys' section of the [registered application](https://developer.starlingbank.com/application)
+- `algorithm` is the name of the signing algorithm used
+    - Supported algorithms are: `rsa-sha256`, `rsa-sha512`, `ecdsa-sha256`, `ecdsa-sha512`
+- `headers` is a space-delimited list of the HTTP headers which have been used to create the signature. These must include:
+    - `(request-target)`: Path of the requested resource (excludes host name)
+    - `Date`: ISO 8601 date and time with offset when the request was made (e.g. `2020-04-01T12:34:56+01:00`)
+        - Requests are only valid within 5 seconds of this time
+        - NB: this is not the standard HTTP format for the Date header
+    - `Digest`: The SHA-512 digest of the request payload (the raw JSON string which makes up the request body), or `X` if no message body is present
+    - You may optionally sign any other headers by including them in this list of headers
+- `signature` is the signature generated with the private API key
+    - This is the signature generated by applying `algorithm` to the header key-value pairs specified in `headers`, encoded in Base64
+    - An example string representation of the headers that would be the content to be signed would be:
+      ```
+      (request-target): put /api/v2/payments/local/account/90d14796-c59f-4944-9146-7fc84deb253c/category/46168325-8d23-4efe-ba48-b3a74f85f23b
+      Date: 2020-04-07T18:26:30.668978+01:00
+      Digest: Aw4ttuzY7Rn0ad4QFkauxuWrLbgBY3QhtYm8SCKDFY2FlmzKgsk5zwW4CJzdc/8hECqylyXaYyOZsH1/rq1qHQ==
+      ```
+
+An example of a complete `Authorization` header is:
+
+```
+Bearer eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAQ-_pT1TALVKOt8.uLjFJikw--DDv3Pf;Signature keyid="aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa",algorithm="rsa-sha512",headers="(request-target) Date Digest",signature="Wdg4ZakVT1/wLU0o9XlKkxvf8MaYQWxUIxWq2Z+/1NvD6NXvqkCOFgM/7Nblh8rFKDenmf0iWtS5DSJmBh5Sjg/ZT4OV44Wm0f0zQ2BIVlENHduMj8UqWRLBgq11HWOILF1UIKBhd92iv0huQIohPskbiHkXgW2NUr6qsVUmljY4zClh0hW48WI5sRRDHO9TqTYDBec0mAOiHnSNGVKGps4KORanbCGmqwythxgxMq3es4IgkeBxe5AEtdI13HT73WqfXIi0lZkgTS5vKyW8ieitNvhBq1rCBLrnnTp3BoTPNevVCbOOjvOknWZD4It1XXHdbz0oCAUl0FVLEOfjB8oXO+ss91TuXiIgJ8zq7fvNJUEoYNYxW8NZ41+MqCizZiK3cbTWrDMMvRtB/muCm6CsUp8o8C/wKRo90+jACGn8xVw/WUx1+fWGCqmFFFhIikqFnkamDBjzc+aHseHuQ09GkrGG1SK4yM4k5ffVZFO1HnInRAS7q/n8tW7YFvFjXXX1lT2OvzAAaGGtnSluezKoHYoN1a+URO2vy0tmiFGxMMoXtdKcZX5rCljO3oTe/llYE4YOataa+zj6Y5Xd4bo04TnD+V8bXqf7VUnOUjlaTQDwIft2uQhHKCe3A/WSXoqc0BukRN46Ms+08KFCLVCYYJWYhgcipg38T5GkAg0="
+```
+
+Code samples for this are available on [GitHub](https://github.com/starlingbank/api-samples/tree/master/message-signing).
+
+#### 4. (later) Rotate keys
+
+There is no maximum age for keys, but we recommend rotating keys on significant staff departure, or if the private key is suspected to be compromised.
+
+A second API key can be added by signing the new public API key with the private rotation key.
+Both keys will then be in service for API calls to support seamless rotation.
+Once you've migrated all your applications over, you can then expire the old API key to prevent it being used.
+
+To do this:
+- Generate a new API key pair (see step 1, 'Generate key pairs' above).
+- Add the new public API key via the 'keys' section in your [registered application](https://developer.starlingbank.com/application).
+
+The signature should be of the form:
+
+```
+Signature keyid="...",algorithm="...",headers="Date Digest",signature="..."
+```
+
+where:
+- `keyid` is the key uid of the rotation key used to sign the request
+    - This is available from the 'keys' section of the [registered application](https://developer.starlingbank.com/application)
+- `algorithm` is the name of the signing algorithm used
+    - Supported algorithms are: `rsa-sha256`, `rsa-sha512`, `ecdsa-sha256`, `ecdsa-sha512`
+- `headers` is a space-delimited list of properties which have been used to create the signature. This must be exactly `Date Digest`.
+    - `Date`: ISO 8601 date and time with offset when the request was made (e.g. `2020-04-01T12:34:56+01:00`)
+        - Requests are only valid within 5 minutes of this time
+    - `Digest`: The SHA-512 digest of the the base64 string of the public key
+        - If you have a key in PKCS8 format, the base64 string is just the public key file without headers and whitespace
+- `signature` is the signature generated with the private rotation key
+    - This is the signature generated by applying `algorithm` to the property key-value pairs specified in `headers`, encoded in base64
+    - An example string representation of the properties that would be the content to be signed would be:
+      ```
+      Date: 2020-04-07T19:47:56.801792+01:00
+      Digest: D9fiexHEKiuqWIgg3SEl1S5Dohbg96z6L8VJiT4lHjJxoKZ3OYn023u5hUOQgXiP8mbCPwIWMYZqPBiPtPd9iQ==
+      ```
+
+An example of a complete signature is:
+
+```
+Signature keyid="aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa",algorithm="rsa-sha512",headers="Date Digest",signature="GbJROi2cB9E0A/+WvXBEzfVGJcx7ep868n2lgnkY4GQXBF5e/6g4viilosYwfBY2JrDfhYVcFv/Pd+bBXBebxs/Z75BgvBmen8M8zeV14XbrKPXtKVuz8dnSplEcJ0z1Djucb4c2tb386hkGDeE1eZXKpLr8DEHO1kbDb6Ox65YkMXor0sY7/BrdziumjQMantd4fBwwbHHWJFcTb39c4MCCHJZwhJ8+/Ay9Q3adY3U5c4dTc8cZotKOkKrBbGltY4Cwq0arahz0kkwzERBJbqFOm7O0z638ZPKWK8y2Xgk3wLrFbtuhjf6y70elhTMN/+VtdElWWVTPLqV0r8V1du2gMa+cg4/hwVB6QyUl/QuXB5mQ/TYGzlMI/9S/qclXdnVOLmOQNYLIwah2NCEDL8fl+tWSyiM2dhxSY1/wa7iG89fp60LeOF9qfnKkF16fPgsGaWWhOlxiwQDNnWoEI7Gf4AMWf7iTtqpfx2N5vGwRJtZ7X4yJRt8P1J2sGB9Kau9+Sxq+FcRpZjemyrh0MTw0fpEMcg9zoVkDSTQk+aim4qOqn7hEPErhxAj8x241DYARU/cv4O/tBLu3Dij/FMoj2MJrecVeykqqxYcBfixiKO5O4HZFrbSc8wKAAhAOBjCMo9GG3NroghcCqvcvNeMlAEaKAU7QiUoJcp/yVh8="
+```
+
+The signature timestamp is the value of `date` used to generate the signature.
+
+Code samples for this are available on [GitHub](https://github.com/starlingbank/api-samples/tree/master/key-rotation).
+
+### Help & Support
+
+Join in and get help from the [Starling Developer Slack](https://developer.starlingbank.com/community) or contact us by [email](mailto:developer@starlingbank.com).
+
+If you have any non-technical questions concerning Starling Bank, see the help section of your app or our [help centre](https://help.starlingbank.com/).
+</description>
+    <summary />
+    <releaseNotes />
+    <copyright>Copyright 2020</copyright>
+    <language>en-US</language>
+        <dependencies>
+        </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\StarlingBankClient.dll" target="lib\StarlingBankClient.dll" />
+  </files>
+</package>
