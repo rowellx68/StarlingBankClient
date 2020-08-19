@@ -57,15 +57,16 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
+| environment | Api Enviroment. SANDBOX points to https://api-sandbox.starlingbank.com and PRODUCTION points to https://api.starlingbank.com |
 | oAuthAccessToken | OAuth 2.0 Access Token |
 
 API client can be initialized as following.
 
 ```csharp
 // Configuration parameters and credentials
-string oAuthAccessToken = "oAuthAccessToken"; // OAuth 2.0 Access Token
-
-StarlingBank client = new StarlingBank(StarlingBank.Configuration.Environments.SANDBOX, oAuthAccessToken);
+string oAuthAccessToken = "YOUR_OAUTH_TOKEN"; 
+var environment = Configuration.Environments.SANDBOX;
+var client = new Client(environment, oAuthAccessToken);
 ```
 
 # Class Reference
@@ -146,7 +147,7 @@ IAccountsController accounts = client.Accounts;
 > This is different from the idea of an individual (a human/natural person), and is different from a person (a natural (human)/legal (company) person).
 > 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -185,7 +186,7 @@ Task<StarlingBank.Models.AccountStatementPeriods> GetAvailablePeriods(Guid accou
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.AccountStatementPeriods result = await accounts.GetAvailablePeriods(accountUid);
 
@@ -223,7 +224,7 @@ Task<StarlingBank.Models.AccountIdentifiers> GetAccountIdentifiers(Guid accountU
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.AccountIdentifiers result = await accounts.GetAccountIdentifiers(accountUid);
 
@@ -242,7 +243,7 @@ StarlingBank.Models.AccountIdentifiers result = await accounts.GetAccountIdentif
 > * The **cleared balance** is the balance of settled transactions and so does not include pending transactions. The cleared end of day balance is used to calculate interest.
 > * The **effective balance** is the balance of settled and pending outgoing transactions. This is the balance most commonly presented to the account holder (e.g. in-app).
 > 
-> Many payment types settle effectively instantly (e.g. faster payments). Card transactions usually take a few days to settle and will remain pending for this time. We've actually got a blog on [how card transactions work](https://www.starlingbank.com/blog/card-transactions-explained/).
+> Many payment types settle effectively instantly (e.g. faster payments). Card transactions usually take a few days to settle and will remain pending for this time. Starling Bank has actually got a blog on [how card transactions work](https://www.starlingbank.com/blog/card-transactions-explained/).
 > 
 > To check whether the account has enough money to make a payment, use the confirmation of funds endpoint instead.
 
@@ -259,7 +260,7 @@ Task<StarlingBank.Models.BalanceV2> GetAccountBalance(Guid accountUid)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.BalanceV2 result = await accounts.GetAccountBalance(accountUid);
 
@@ -322,7 +323,7 @@ Task<Stream> GetDownloadCSVStatement(Guid accountUid, string yearMonth)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 string yearMonth = "2020-08";
 
 Stream result = await accounts.GetDownloadCSVStatement(accountUid, yearMonth);
@@ -355,7 +356,7 @@ Task<Stream> GetDownloadCSVStatementForDateRange(Guid accountUid, DateTime start
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 DateTime start = 2020-08-17;
 DateTime? end = 2020-08-17;
 
@@ -787,7 +788,7 @@ Task<dynamic> GetDownloadProfileImage(Guid accountHolderUid)
 #### Example Usage
 
 ```csharp
-Guid accountHolderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountHolderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 dynamic result = await profileImages.GetDownloadProfileImage(accountHolderUid);
 
@@ -851,7 +852,7 @@ Task DeleteProfileImage(Guid accountHolderUid)
 #### Example Usage
 
 ```csharp
-Guid accountHolderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountHolderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await profileImages.DeleteProfileImage(accountHolderUid);
 
@@ -1249,7 +1250,7 @@ Task<StarlingBank.Models.RecurringCardPayment> ListRecurringPayments(Guid accoun
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.RecurringCardPayment result = await recurringCardPayments.ListRecurringPayments(accountUid);
 
@@ -1284,7 +1285,7 @@ Task<StarlingBank.Models.DirectDebitMandateV2> GetMandate(Guid mandateUid)
 #### Example Usage
 
 ```csharp
-Guid mandateUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid mandateUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.DirectDebitMandateV2 result = await directDebitMandates.GetMandate(mandateUid);
 
@@ -1314,7 +1315,7 @@ Task DeleteCancelMandate(Guid mandateUid)
 #### Example Usage
 
 ```csharp
-Guid mandateUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid mandateUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await directDebitMandates.DeleteCancelMandate(mandateUid);
 
@@ -1345,7 +1346,7 @@ Task<StarlingBank.Models.DirectDebitPaymentsResponse> ListPaymentsForMandate(Gui
 #### Example Usage
 
 ```csharp
-Guid mandateUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid mandateUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 DateTime since = 2020-08-17;
 
 StarlingBank.Models.DirectDebitPaymentsResponse result = await directDebitMandates.ListPaymentsForMandate(mandateUid, since);
@@ -1397,7 +1398,7 @@ ITransactionFeedController transactionFeed = client.TransactionFeed;
 ### <a name="update_user_note"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.UpdateUserNote") UpdateUserNote
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1439,7 +1440,7 @@ await transactionFeed.UpdateUserNote(accountUid, categoryUid, feedItemUid, body)
 ### <a name="get_download_feed_item_attachment"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetDownloadFeedItemAttachment") GetDownloadFeedItemAttachment
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1462,10 +1463,10 @@ Task<Stream> GetDownloadFeedItemAttachment(
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid feedItemAttachmentUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid feedItemUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid feedItemAttachmentUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 Stream result = await transactionFeed.GetDownloadFeedItemAttachment(accountUid, categoryUid, feedItemUid, feedItemAttachmentUid);
 
@@ -1481,7 +1482,7 @@ Stream result = await transactionFeed.GetDownloadFeedItemAttachment(accountUid, 
 ### <a name="get_receipt"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetReceipt") GetReceipt
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1499,9 +1500,9 @@ Task<StarlingBank.Models.Receipt> GetReceipt(Guid accountUid, Guid categoryUid, 
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid feedItemUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.Receipt result = await transactionFeed.GetReceipt(accountUid, categoryUid, feedItemUid);
 
@@ -1557,7 +1558,7 @@ StarlingBank.Models.ReceiptCreationResponse result = await transactionFeed.Creat
 ### <a name="change_transaction_category"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.ChangeTransactionCategory") ChangeTransactionCategory
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1599,7 +1600,7 @@ await transactionFeed.ChangeTransactionCategory(accountUid, categoryUid, feedIte
 ### <a name="get_feed_item"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetFeedItem") GetFeedItem
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1617,9 +1618,9 @@ Task<StarlingBank.Models.FeedItem> GetFeedItem(Guid accountUid, Guid categoryUid
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid feedItemUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.FeedItem result = await transactionFeed.GetFeedItem(accountUid, categoryUid, feedItemUid);
 
@@ -1635,7 +1636,7 @@ StarlingBank.Models.FeedItem result = await transactionFeed.GetFeedItem(accountU
 ### <a name="get_query_feed_items"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetQueryFeedItems") GetQueryFeedItems
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1653,8 +1654,8 @@ Task<StarlingBank.Models.FeedItems> GetQueryFeedItems(Guid accountUid, Guid cate
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 DateTime changesSince = 2020-01-01T12:34:56.000Z;
 
 StarlingBank.Models.FeedItems result = await transactionFeed.GetQueryFeedItems(accountUid, categoryUid, changesSince);
@@ -1671,7 +1672,7 @@ StarlingBank.Models.FeedItems result = await transactionFeed.GetQueryFeedItems(a
 ### <a name="get_query_feed_items_with_transaction_times_between"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetQueryFeedItemsWithTransactionTimesBetween") GetQueryFeedItemsWithTransactionTimesBetween
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1694,8 +1695,8 @@ Task<StarlingBank.Models.FeedItems> GetQueryFeedItemsWithTransactionTimesBetween
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 DateTime minTransactionTimestamp = 2020-06-01T12:34:56.000Z;
 DateTime maxTransactionTimestamp = 2020-07-01T12:34:56.000Z;
 
@@ -1713,7 +1714,7 @@ StarlingBank.Models.FeedItems result = await transactionFeed.GetQueryFeedItemsWi
 ### <a name="get_feed_item_attachments"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetFeedItemAttachments") GetFeedItemAttachments
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1731,9 +1732,9 @@ Task<StarlingBank.Models.FeedItemAttachments> GetFeedItemAttachments(Guid accoun
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid feedItemUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.FeedItemAttachments result = await transactionFeed.GetFeedItemAttachments(accountUid, categoryUid, feedItemUid);
 
@@ -1749,7 +1750,7 @@ StarlingBank.Models.FeedItemAttachments result = await transactionFeed.GetFeedIt
 ### <a name="get_mastercard_feed_item"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..TransactionFeedController.GetMastercardFeedItem") GetMastercardFeedItem
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -1767,9 +1768,9 @@ Task<StarlingBank.Models.MastercardFeedItem> GetMastercardFeedItem(Guid accountU
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid feedItemUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid feedItemUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.MastercardFeedItem result = await transactionFeed.GetMastercardFeedItem(accountUid, categoryUid, feedItemUid);
 
@@ -1811,7 +1812,7 @@ Task<StarlingBank.Models.RoundUpGoalResponse> FetchRoundUpGoal(Guid accountUid)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.RoundUpGoalResponse result = await feedRoundUp.FetchRoundUpGoal(accountUid);
 
@@ -1873,7 +1874,7 @@ Task DeleteStopRoundUpGoal(Guid accountUid)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await feedRoundUp.DeleteStopRoundUpGoal(accountUid);
 
@@ -2031,7 +2032,7 @@ Task<StarlingBank.Models.PaymentOrderV2> GetPaymentOrder(Guid paymentOrderUid)
 #### Example Usage
 
 ```csharp
-Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid paymentOrderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.PaymentOrderV2 result = await payments.GetPaymentOrder(paymentOrderUid);
 
@@ -2049,7 +2050,7 @@ StarlingBank.Models.PaymentOrderV2 result = await payments.GetPaymentOrder(payme
 > Creates and sends an immediate payment within the UK under the Faster Payments Scheme or via SEPA for payments between Euro accounts. The recipient of the payment must be a payee of the account holder (new payees can be created using the 'Payees' endpoint) OR be defined in the `paymentRecipient` member of the request.
 > 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2085,7 +2086,7 @@ StarlingBank.Models.InstructLocalPaymentResponse result = await payments.UpdateM
 ### <a name="list_standing_orders"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..PaymentsController.ListStandingOrders") ListStandingOrders
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2102,8 +2103,8 @@ Task<StarlingBank.Models.StandingOrdersResponse> ListStandingOrders(Guid account
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.StandingOrdersResponse result = await payments.ListStandingOrders(accountUid, categoryUid);
 
@@ -2119,7 +2120,7 @@ StarlingBank.Models.StandingOrdersResponse result = await payments.ListStandingO
 ### <a name="create_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..PaymentsController.CreateStandingOrder") CreateStandingOrder
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2155,7 +2156,7 @@ StarlingBank.Models.CreateStandingOrderResponse result = await payments.CreateSt
 ### <a name="get_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..PaymentsController.GetStandingOrder") GetStandingOrder
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2173,9 +2174,9 @@ Task<StarlingBank.Models.StandingOrder> GetStandingOrder(Guid accountUid, Guid c
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid paymentOrderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.StandingOrder result = await payments.GetStandingOrder(accountUid, categoryUid, paymentOrderUid);
 
@@ -2191,7 +2192,7 @@ StarlingBank.Models.StandingOrder result = await payments.GetStandingOrder(accou
 ### <a name="update_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..PaymentsController.UpdateStandingOrder") UpdateStandingOrder
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2233,7 +2234,7 @@ StarlingBank.Models.UpdateStandingOrderResponse result = await payments.UpdateSt
 ### <a name="delete_cancel_standing_order"></a>![Method: ](https://www.collaborotech.com/img/method.png "StarlingBank.Controllers..PaymentsController.DeleteCancelStandingOrder") DeleteCancelStandingOrder
 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2251,9 +2252,9 @@ Task DeleteCancelStandingOrder(Guid accountUid, Guid categoryUid, Guid paymentOr
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid paymentOrderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await payments.DeleteCancelStandingOrder(accountUid, categoryUid, paymentOrderUid);
 
@@ -2271,7 +2272,7 @@ await payments.DeleteCancelStandingOrder(accountUid, categoryUid, paymentOrderUi
 > N.B. if you're looking for only the next payment date, this is also returned when getting a standing order in the `StandingOrder` response from the field `nextDate`.
 > 
 > Categories are subdivisions within an account.
-> The `defaultCategory` from [`/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
+> The `defaultCategory` from [`https://api-sandbox.starlingbank.com/api/v2/accounts`](#operations-tag-Accounts) is where the main balance and transactions are held.
 > Other categories are used for Savings Goals.
 
 ```csharp
@@ -2294,9 +2295,9 @@ Task<StarlingBank.Models.NextPaymentDatesResponse> ListNextPaymentDates(
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid categoryUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid categoryUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid paymentOrderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 int? count = 28;
 
 StarlingBank.Models.NextPaymentDatesResponse result = await payments.ListNextPaymentDates(accountUid, categoryUid, paymentOrderUid, count);
@@ -2327,7 +2328,7 @@ Task<StarlingBank.Models.PaymentOrderPaymentsResponse> GetPaymentOrderPayments(G
 #### Example Usage
 
 ```csharp
-Guid paymentOrderUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid paymentOrderUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.PaymentOrderPaymentsResponse result = await payments.GetPaymentOrderPayments(paymentOrderUid);
 
@@ -2520,8 +2521,8 @@ Task<StarlingBank.Models.ScheduledPayments> ListPaymentOrdersForAccount(Guid pay
 #### Example Usage
 
 ```csharp
-Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid payeeUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.ScheduledPayments result = await payees.ListPaymentOrdersForAccount(payeeUid, accountUid);
 
@@ -2551,7 +2552,7 @@ Task DeletePayee(Guid payeeUid)
 #### Example Usage
 
 ```csharp
-Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid payeeUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await payees.DeletePayee(payeeUid);
 
@@ -2582,8 +2583,8 @@ Task DeletePayeeAccount(Guid payeeUid, Guid accountUid)
 #### Example Usage
 
 ```csharp
-Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid payeeUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await payees.DeletePayeeAccount(payeeUid, accountUid);
 
@@ -2615,8 +2616,8 @@ Task<StarlingBank.Models.Payments> ListPaymentsForPayeeAccount(Guid payeeUid, Gu
 #### Example Usage
 
 ```csharp
-Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid payeeUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 DateTime since = 2020-08-17;
 
 StarlingBank.Models.Payments result = await payees.ListPaymentsForPayeeAccount(payeeUid, accountUid, since);
@@ -2647,7 +2648,7 @@ Task<dynamic> GetServePayeeImageFile(Guid payeeUid)
 #### Example Usage
 
 ```csharp
-Guid payeeUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid payeeUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 dynamic result = await payees.GetServePayeeImageFile(payeeUid);
 
@@ -2690,8 +2691,8 @@ Task<StarlingBank.Models.SavingsGoalV2> GetSavingsGoal(Guid accountUid, Guid sav
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid savingsGoalUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.SavingsGoalV2 result = await savingsGoals.GetSavingsGoal(accountUid, savingsGoalUid);
 
@@ -2756,8 +2757,8 @@ Task DeleteSavingsGoal(Guid accountUid, Guid savingsGoalUid)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid savingsGoalUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await savingsGoals.DeleteSavingsGoal(accountUid, savingsGoalUid);
 
@@ -2787,7 +2788,7 @@ Task<StarlingBank.Models.SavingsGoalsV2> GetSavingsGoals(Guid accountUid)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.SavingsGoalsV2 result = await savingsGoals.GetSavingsGoals(accountUid);
 
@@ -2850,8 +2851,8 @@ Task<StarlingBank.Models.SavingsGoalPhotoV2> GetSavingsGoalPhoto(Guid accountUid
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid savingsGoalUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.SavingsGoalPhotoV2 result = await savingsGoals.GetSavingsGoalPhoto(accountUid, savingsGoalUid);
 
@@ -2962,8 +2963,8 @@ Task<StarlingBank.Models.ScheduledSavingsPaymentV2> GetRecurringTransfer(Guid ac
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid savingsGoalUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 StarlingBank.Models.ScheduledSavingsPaymentV2 result = await savingsGoals.GetRecurringTransfer(accountUid, savingsGoalUid);
 
@@ -3028,8 +3029,8 @@ Task DeleteRecurringTransfer(Guid accountUid, Guid savingsGoalUid)
 #### Example Usage
 
 ```csharp
-Guid accountUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
-Guid savingsGoalUid = aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa;
+Guid accountUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
+Guid savingsGoalUid = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa;
 
 await savingsGoals.DeleteRecurringTransfer(accountUid, savingsGoalUid);
 
@@ -3099,5 +3100,3 @@ StarlingBank.Models.AccountHolderSubscription result = await subscriptions.GetAc
 ```
 
 [Back to List of Controllers](#list_of_controllers)
-
-
