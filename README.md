@@ -181,7 +181,7 @@ Task<StarlingBank.Models.AccountStatementPeriods> GetAvailablePeriods(Guid accou
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accountUid |  ``` Required ```  | 
+| accountUid |  ``` Required ```  | Account uid |
 
 #### Example Usage
 
@@ -317,7 +317,7 @@ Task<Stream> GetDownloadCSVStatement(Guid accountUid, string yearMonth)
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accountUid |  ``` Required ```  | 
+| accountUid |  ``` Required ```  | Account uid | 
 | yearMonth |  ``` Required ```  | 
 
 #### Example Usage
@@ -349,7 +349,7 @@ Task<Stream> GetDownloadCSVStatementForDateRange(Guid accountUid, DateTime start
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accountUid |  ``` Required ```  | 
+| accountUid |  ``` Required ```  | Account uid |
 | start |  ``` Required ```  | 
 | end |  ``` Optional ```  | 
 
@@ -1245,7 +1245,7 @@ Task<StarlingBank.Models.RecurringCardPayment> ListRecurringPayments(Guid accoun
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accountUid |  ``` Required ```  | 
+| accountUid |  ``` Required ```  | Account uid |
 
 #### Example Usage
 
@@ -1869,7 +1869,7 @@ Task DeleteStopRoundUpGoal(Guid accountUid)
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accountUid |  ``` Required ```  | 
+| accountUid |  ``` Required ```  | Account uid |
 
 #### Example Usage
 
@@ -3100,3 +3100,5 @@ StarlingBank.Models.AccountHolderSubscription result = await subscriptions.GetAc
 ```
 
 [Back to List of Controllers](#list_of_controllers)
+
+
