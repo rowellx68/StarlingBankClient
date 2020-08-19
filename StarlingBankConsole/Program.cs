@@ -10,7 +10,7 @@ namespace StarlingBankTestConsole
 
         static void Main(string[] args)
         {
-            var client = new Client(Configuration.Environments.SANDBOX, "YOUR_TOKEN_HERE");
+            var client = new Client(Configuration.Environments.SANDBOX, "YOUR TOKEN HERE");
             var accounts = client.Accounts;
             var myAccounts = accounts.GetAccounts();
             foreach (var myAccountBalance in from account in myAccounts.AccountsProp where account.AccountUid != null select accounts.GetAccountBalance((Guid) account.AccountUid))
@@ -22,6 +22,7 @@ namespace StarlingBankTestConsole
             {
                 Console.WriteLine("My spending insight is  " + spendingInsight.Breakdown.Capacity);
             }
+
         }
 
     }
