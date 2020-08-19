@@ -2,7 +2,7 @@
 
 This is an unofficial C# .NET Standard SDK for Starling Bank's API. Starling's API enables seamless integration of Starling account and transactional data into your application.
 You can, subject to permission, use it to view account holder data and to automate actions on their accounts.
-Before using the SDK, please follow the steps for getting started defined at [https://developer.starlingbank.com/get-started]
+Before using the SDK, please follow the steps for getting started defined at (https://developer.starlingbank.com/get-started)
 
 ## Nuget
 
