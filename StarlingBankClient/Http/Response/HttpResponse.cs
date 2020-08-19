@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace StarlingBankClient.Http.Response
+namespace StarlingBank.Http.Response
 {
     public class HTTPResponse
     {

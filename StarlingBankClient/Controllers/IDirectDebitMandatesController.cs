@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using StarlingBankClient.Models;
+using StarlingBank.Models;
 
 // ReSharper disable UnusedMember.Global
 
-namespace StarlingBankClient.Controllers
+namespace StarlingBank.Controllers
 {
     public interface IDirectDebitMandatesController
     {

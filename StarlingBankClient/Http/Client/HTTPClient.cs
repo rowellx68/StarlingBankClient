@@ -5,11 +5,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using StarlingBankClient.Http.Request;
-using StarlingBankClient.Http.Response;
-using StarlingBankClient.Utilities;
+using StarlingBank.Http.Request;
+using StarlingBank.Http.Response;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient.Http.Client
+namespace StarlingBank.Http.Client
 {
     public class HTTPClient : IHTTPClient
     {

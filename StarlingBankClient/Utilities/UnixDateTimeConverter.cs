@@ -2,9 +2,10 @@ using System;
 using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+
 // ReSharper disable UnusedMember.Global
 
-namespace StarlingBankClient.Utilities
+namespace StarlingBank.Utilities
 {
     public class UnixDateTimeConverter : DateTimeConverterBase
     {

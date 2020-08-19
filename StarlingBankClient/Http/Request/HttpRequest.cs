@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace StarlingBankClient.Http.Request
+namespace StarlingBank.Http.Request
 {
   public class HTTPRequest
     {

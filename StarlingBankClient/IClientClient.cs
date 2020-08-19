@@ -1,8 +1,9 @@
-using StarlingBankClient.Controllers;
+using StarlingBank.Controllers;
+
 // ReSharper disable UnusedMemberInSuper.Global
 // ReSharper disable UnusedMember.Global
 
-namespace StarlingBankClient
+namespace StarlingBank
 {
     public interface IClientClient
     {

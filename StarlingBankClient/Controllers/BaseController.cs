@@ -1,13 +1,12 @@
 using System;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
-using StarlingBankClient.Exceptions;
-using StarlingBankClient.Http.Client;
-using StarlingBankClient.Http.Response;
-using StarlingBankClient.Utilities;
+using StarlingBank.Exceptions;
+using StarlingBank.Http.Client;
+using StarlingBank.Http.Response;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient.Controllers
+namespace StarlingBank.Controllers
 {
     public class BaseController
     {

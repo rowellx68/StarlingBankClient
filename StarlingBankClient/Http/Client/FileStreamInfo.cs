@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace StarlingBankClient.Http.Client
+namespace StarlingBank.Http.Client
 {
     /// <summary>
     /// An DTO class to capture information for file uploads

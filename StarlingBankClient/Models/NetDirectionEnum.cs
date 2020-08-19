@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     [JsonConverter(typeof(StringValuedEnumConverter))]
     public enum NetDirectionEnum

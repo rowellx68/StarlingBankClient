@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using StarlingBankClient.Http.Request;
-using StarlingBankClient.Http.Response;
+using StarlingBank.Http.Request;
+using StarlingBank.Http.Response;
+
 // ReSharper disable UnusedMember.Global
 
-namespace StarlingBankClient.Http.Client
+namespace StarlingBank.Http.Client
 {
 	public interface IHTTPClient
     {

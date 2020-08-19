@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using NUnit.Framework;
-using StarlingBankClient.Exceptions;
-using StarlingBankClient.Models;
-using StarlingBankClient.Tests.Helpers;
+using StarlingBank.Exceptions;
+using StarlingBank.Models;
+using StarlingBank.Tests.Helpers;
 
-namespace StarlingBankClient.Tests
+namespace StarlingBank.Tests
 {
     [TestFixture]
     public class ControllerTestBase
@@ -18,7 +16,7 @@ namespace StarlingBankClient.Tests
         public TimeSpan GlobalTimeout = TimeSpan.FromSeconds(RequestTimeout);
 
         //Test Credentials
-        public static StarlingBankClient.Configuration.Environments Environment;
+        public static Configuration.Environments Environment;
         public static string OAuthAccessToken;
 
 

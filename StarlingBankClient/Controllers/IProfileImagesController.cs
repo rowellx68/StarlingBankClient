@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedMemberInSuper.Global
 
-namespace StarlingBankClient.Controllers
+namespace StarlingBank.Controllers
 {
     public interface IProfileImagesController
     {

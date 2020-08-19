@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using StarlingBankClient.Http.Client;
-using StarlingBankClient.Models;
+using StarlingBank.Http.Client;
+using StarlingBank.Models;
 
-namespace StarlingBankClient.Exceptions
+namespace StarlingBank.Exceptions
 {
     public class ErrorResponseException : APIException 
     {

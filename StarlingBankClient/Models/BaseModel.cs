@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class BaseModel : INotifyPropertyChanged
     {

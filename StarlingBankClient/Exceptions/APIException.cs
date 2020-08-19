@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using Newtonsoft.Json;
-using StarlingBankClient.Http.Client;
+using StarlingBank.Http.Client;
 
-namespace StarlingBankClient.Exceptions
+namespace StarlingBank.Exceptions
 {
     [JsonObject]
     public class APIException : Exception

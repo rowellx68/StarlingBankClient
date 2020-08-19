@@ -1,4 +1,4 @@
-namespace StarlingBankClient.Http.Response
+namespace StarlingBank.Http.Response
 {
     public class HttpStringResponse : HTTPResponse
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class IdentityV2 : BaseModel 
     {

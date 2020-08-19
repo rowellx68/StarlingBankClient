@@ -3,7 +3,7 @@ using System.Collections;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class StringValuedEnumConverter : JsonConverter
     {

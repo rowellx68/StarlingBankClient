@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using StarlingBankClient.Models;
+using StarlingBank.Models;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedMemberInSuper.Global
 
-namespace StarlingBankClient.Controllers
+namespace StarlingBank.Controllers
 {
     public interface ITransactionFeedController
     {

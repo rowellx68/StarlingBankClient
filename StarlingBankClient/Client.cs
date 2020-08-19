@@ -1,8 +1,8 @@
 using System;
-using StarlingBankClient.Controllers;
-using StarlingBankClient.Http.Client;
+using StarlingBank.Controllers;
+using StarlingBank.Http.Client;
 
-namespace StarlingBankClient
+namespace StarlingBank
 {
     public class Client: IClientClient
     {
@@ -141,13 +141,13 @@ namespace StarlingBankClient
         /// Client initialization constructor
         /// </summary>
         // ReSharper disable once UnusedMember.Global
-        public Client(StarlingBankClient.Configuration.Environments environment, string oAuthAccessToken)
+        public Client(Configuration.Environments environment, string oAuthAccessToken)
         {
             if (string.IsNullOrEmpty(oAuthAccessToken))
             {
                 throw new ArgumentNullException(nameof(oAuthAccessToken) + " cannot be null.");
             }
-            StarlingBankClient.Configuration.Environment = environment;
+            Configuration.Environment = environment;
             Configuration.OAuthAccessToken = oAuthAccessToken;
         }
         #endregion

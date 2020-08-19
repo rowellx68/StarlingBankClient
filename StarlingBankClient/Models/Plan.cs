@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class Plan : BaseModel 
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using StarlingBankClient.Utilities;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class OnboardingRequest : BaseModel 
     {

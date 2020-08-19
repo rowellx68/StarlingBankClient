@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text;
-using StarlingBankClient.Utilities;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient
+namespace StarlingBank
 {
     public class Configuration
     {

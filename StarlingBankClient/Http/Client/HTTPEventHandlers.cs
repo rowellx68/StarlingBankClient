@@ -1,7 +1,7 @@
-using StarlingBankClient.Http.Request;
-using StarlingBankClient.Http.Response;
+using StarlingBank.Http.Request;
+using StarlingBank.Http.Response;
 
-namespace StarlingBankClient.Http.Client
+namespace StarlingBank.Http.Client
 {
     /// <summary>
     /// Delegate to handle the event on before HTTP request. This event is raised before any

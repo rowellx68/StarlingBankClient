@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using StarlingBankClient.Models;
+using StarlingBank.Models;
 
-namespace StarlingBankClient.Controllers
+namespace StarlingBank.Controllers
 {
     public interface IAPIUserIdentitiesController
     {

@@ -4,10 +4,10 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json.Linq;
-using StarlingBankClient.Http.Client;
-using StarlingBankClient.Utilities;
+using StarlingBank.Http.Client;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient.Tests.Helpers
+namespace StarlingBank.Tests.Helpers
 {
     static class TestHelper
     {

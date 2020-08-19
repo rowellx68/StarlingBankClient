@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using StarlingBankClient.Controllers;
-using StarlingBankClient.Exceptions;
+using StarlingBank.Controllers;
+using StarlingBank.Exceptions;
 
-namespace StarlingBankClient.Tests
+namespace StarlingBank.Tests
 {
     [TestFixture]
     public class ProfileImagesControllerTest : ControllerTestBase

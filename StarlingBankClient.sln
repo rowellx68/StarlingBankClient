@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlingBankClient", "StarlingBankClient\StarlingBankClient.csproj", "{0621D1EF-F713-4F39-96E2-B67FE3E56BFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlingBank", "StarlingBankClient\StarlingBank.csproj", "{0621D1EF-F713-4F39-96E2-B67FE3E56BFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingBankClient.Tests", "StarlingBankClient.Tests\StarlingBankClient.Tests.csproj", "{603376AE-C1C8-4084-9D55-C360905AC01E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlingBank.Tests", "StarlingBankClient.Tests\StarlingBank.Tests.csproj", "{603376AE-C1C8-4084-9D55-C360905AC01E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingBankConsole", "StarlingBankConsole\StarlingBankConsole.csproj", "{60E46A92-6B1D-44C0-947C-B53AAF67DF39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlingBankTestConsole", "StarlingBankConsole\StarlingBankTestConsole.csproj", "{60E46A92-6B1D-44C0-947C-B53AAF67DF39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

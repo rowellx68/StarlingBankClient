@@ -1,9 +1,9 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using StarlingBankClient.Utilities;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class StandingOrder : BaseModel 
     {

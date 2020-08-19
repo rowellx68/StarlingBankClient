@@ -1,11 +1,11 @@
 using System.Text;
 using System.Threading.Tasks;
-using StarlingBankClient.Http.Client;
-using StarlingBankClient.Http.Response;
-using StarlingBankClient.Models;
-using StarlingBankClient.Utilities;
+using StarlingBank.Http.Client;
+using StarlingBank.Http.Response;
+using StarlingBank.Models;
+using StarlingBank.Utilities;
 
-namespace StarlingBankClient.Controllers
+namespace StarlingBank.Controllers
 {
     public class WebhooksController: BaseController, IWebhooksController
     {

@@ -1,4 +1,4 @@
-namespace StarlingBankClient.Utilities
+namespace StarlingBank.Utilities
 {
     public enum ArrayDeserialization
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class AccountHolderSubscription : BaseModel 
     {

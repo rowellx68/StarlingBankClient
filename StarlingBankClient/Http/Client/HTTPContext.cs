@@ -1,7 +1,7 @@
-using StarlingBankClient.Http.Request;
-using StarlingBankClient.Http.Response;
+using StarlingBank.Http.Request;
+using StarlingBank.Http.Response;
 
-namespace StarlingBankClient.Http.Client
+namespace StarlingBank.Http.Client
 {
     /// <summary>
     /// Represents the contextual information of HTTP request and response

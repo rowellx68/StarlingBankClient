@@ -1,8 +1,8 @@
-using StarlingBankClient.Http.Client;
-using StarlingBankClient.Http.Request;
-using StarlingBankClient.Http.Response;
+using StarlingBank.Http.Client;
+using StarlingBank.Http.Request;
+using StarlingBank.Http.Response;
 
-namespace StarlingBankClient.Tests.Helpers
+namespace StarlingBank.Tests.Helpers
 {
     public class HttpCallBackEventsHandler
     {

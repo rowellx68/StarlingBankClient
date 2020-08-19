@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+
 // ReSharper disable UnusedMember.Global
 
-namespace StarlingBankClient.Utilities
+namespace StarlingBank.Utilities
 {
     public static class APIHelper
     {

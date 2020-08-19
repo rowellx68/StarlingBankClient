@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace StarlingBankClient.Models
+namespace StarlingBank.Models
 {
     public class ContentModel : BaseModel 
     {

@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
+
 // ReSharper disable UnusedMember.Global
 
-namespace StarlingBankClient.Utilities
+namespace StarlingBank.Utilities
 {
     public static class RetryHelper
     {

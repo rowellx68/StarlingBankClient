@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Converters;
 
-namespace StarlingBankClient.Utilities
+namespace StarlingBank.Utilities
 {
     public class CustomDateTimeConverter : IsoDateTimeConverter
     {

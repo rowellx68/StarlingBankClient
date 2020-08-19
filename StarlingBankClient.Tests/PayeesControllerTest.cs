@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using StarlingBankClient.Controllers;
-using StarlingBankClient.Exceptions;
-using StarlingBankClient.Models;
-using StarlingBankClient.Tests.Helpers;
+using StarlingBank.Controllers;
+using StarlingBank.Exceptions;
+using StarlingBank.Models;
+using StarlingBank.Tests.Helpers;
 
-namespace StarlingBankClient.Tests
+namespace StarlingBank.Tests
 {
     [TestFixture]
     public class PayeesControllerTest : ControllerTestBase
